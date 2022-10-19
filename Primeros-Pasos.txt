@@ -1,1 +1,1 @@
-1. Instalar Node.js
+1. npm install
