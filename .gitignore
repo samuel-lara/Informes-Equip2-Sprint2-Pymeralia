@@ -1,3 +1,4 @@
+node_modules
 pymeraliaDB/aria_log_control
 pymeraliaDB/aria_log.00000001
 pymeraliaDB/ddl_recovery.log
