@@ -15,9 +15,26 @@ class Questionari {
     return $this->estat;
   }
 
-  function set_estat() {
-    return $this->estat;
+  function setEstat($estat) {
+    $this-> estat = $estat;
   }
+
+  function get_preguntes () {
+    return $this-> preguntes;
+  }
+
+  function setPreguntes($preguntes) {
+    $this -> preguntes = $preguntes;
+  }
+
+  function get_respostes () {
+    return $this-> respostes;
+  }
+
+  function set_respostes($respostes) {
+    $this -> respostes = $respostes;
+  }
+
 }
 
 ?>
