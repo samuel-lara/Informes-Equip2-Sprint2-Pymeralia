@@ -32,7 +32,7 @@ class Informe {
    *
    * @return void
    */
-  function getEstat() {
+  public function getEstat() {
     return $this->estat;
   }
   
@@ -41,7 +41,7 @@ class Informe {
    *
    * @return void
    */
-  function getData() {
+  public function getData() {
     return $this->data;
   }
   
@@ -50,7 +50,7 @@ class Informe {
    *
    * @return void
    */
-  function getResum() {
+  public function getResum() {
     return $this->resum;
   }
   
@@ -59,7 +59,7 @@ class Informe {
    *
    * @return void
    */
-  function getNivellRisc() {
+  public function getNivellRisc() {
     return $this->nivellRisc;
   }
   
@@ -68,7 +68,7 @@ class Informe {
    *
    * @return void
    */
-  function getIntervencio() {
+  public function getIntervencio() {
     return $this->intervencio;
   }
 
@@ -79,7 +79,7 @@ class Informe {
    * @param  mixed $estat
    * @return void
    */
-  function setEstat($estat) {
+  public function setEstat($estat) {
     $this->estat = $estat;
   }
   
@@ -89,7 +89,7 @@ class Informe {
    * @param  mixed $resum
    * @return void
    */
-  function setResum($resum) {
+  public function setResum($resum) {
     $this->resum = $resum;
   }
   
@@ -99,7 +99,7 @@ class Informe {
    * @param  mixed $data
    * @return void
    */
-  function setData($data) {
+  public function setData($data) {
     $this->data = $data;
   }
   
@@ -109,7 +109,7 @@ class Informe {
    * @param  mixed $nivellRisc
    * @return void
    */
-  function setNivellRisc($nivellRisc) {
+  public function setNivellRisc($nivellRisc) {
     $this->nivellRisc = $nivellRisc;
   }
   
@@ -119,7 +119,7 @@ class Informe {
    * @param  mixed $intervencio
    * @return void
    */
-  function setIntervecio($intervencio) {
+  public function setIntervecio($intervencio) {
     $this->intervencio = $intervencio;
   }
 
