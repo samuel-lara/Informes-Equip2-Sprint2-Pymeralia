@@ -10,27 +10,27 @@ class Questionari {
     $this->estat = $estat;
   }
 
-  function getEstat() {
+  public function getEstat() {
     return $this->estat;
   }
 
-  function getPreguntes () {
+  public function getPreguntes () {
     return $this-> preguntes;
   }
 
-  function getRespostes () {
+  public function getRespostes () {
     return $this-> respostes;
   }
 
-  function setEstat($estat) {
+  public function setEstat($estat) {
     $this-> estat = $estat;
   }
 
-  function setPreguntes($preguntes) {
+  public function setPreguntes($preguntes) {
     $this -> preguntes = $preguntes;
   }
 
-  function setRespostes($respostes) {
+  public function setRespostes($respostes) {
     $this -> respostes = $respostes;
   }
 
