@@ -1,8 +1,5 @@
 <?php 
-include './connect.php';
-/**
- * Informe
- */
+
 class Informe {
     private $estat;
     private $data;
