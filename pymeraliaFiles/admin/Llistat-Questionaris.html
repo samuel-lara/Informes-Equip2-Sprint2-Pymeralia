@@ -75,24 +75,33 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="calificaciones.html"><i
                             class="fa-solid fa-address-book"></i>Contacto</a>
-                </li>
+                        </li>
                     </ul>
                 </div>
         </nav><!--Header Menu-->
 
     </header>
-    
-    <div class="container overflow-hidden text-center py-3">
-        
-    </div>
-        
+    <div class="container overflow-hidden text-center py-3" id="barra-busqueda">
+    <div class="input-group">
+        <div>
+            <button class="btn btn-info btn-sm" id="boton-crear-questionario">Crear Questionario</button>
+        </div>
+
+        <div class="form-outline">
+          <input type="search" id="form1" class="form-control" placeholder="Buscar"/>
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div><!--Barra Buscar-->
 
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
-        <div>
+        <div class="container overflow-hidden text-center py-3">
             <h2>Lista Questionarios</h2>
         </div>
         <div>
-            <table class="table table-striped align-middle">
+            <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
                         <th scope="col"><input type="checkbox"></th>
@@ -101,7 +110,7 @@
                         <th scope="col">Empresa</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col"></th>
+                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar</button><!--Editar i Eliminar--></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -112,7 +121,7 @@
                         <td>Institut Montsià</td><!--Empresa-->
                         <td>Samuel Lara</td><!--Autor-->
                         <td>22/11/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
@@ -121,7 +130,7 @@
                         <td>Fibla S.L.</td><!--Empresa-->
                         <td>Ivan Sorribes</td><!--Autor-->
                         <td>14/10/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
@@ -130,7 +139,7 @@
                         <td>Empatica</td><!--Empresa-->
                         <td>Yasir Hayati</td><!--Autor-->
                         <td>09/09/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
                 </tbody>
             </table>
