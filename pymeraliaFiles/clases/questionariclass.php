@@ -34,6 +34,19 @@ class Questionari {
     $this -> respostes = $respostes;
   }
 
+  /** CRUD Questionari */  
+
+  private function addQuestionari(){
+  }
+  
+  private function editQuestionari(){
+  }
+  
+  private function deleteQuestionari(){
+  }
+  
+  public function showQuestionari(){
+  }
 }
 
 ?>
