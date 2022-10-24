@@ -1,5 +1,4 @@
 <?php 
-include './connect.php';
 class Questionari {
     private $estat;
     private $preguntes;
@@ -11,27 +10,27 @@ class Questionari {
     $this->estat = $estat;
   }
 
-  function get_estat() {
+  function getEstat() {
     return $this->estat;
+  }
+
+  function getPreguntes () {
+    return $this-> preguntes;
+  }
+
+  function getRespostes () {
+    return $this-> respostes;
   }
 
   function setEstat($estat) {
     $this-> estat = $estat;
   }
 
-  function get_preguntes () {
-    return $this-> preguntes;
-  }
-
   function setPreguntes($preguntes) {
     $this -> preguntes = $preguntes;
   }
 
-  function get_respostes () {
-    return $this-> respostes;
-  }
-
-  function set_respostes($respostes) {
+  function setRespostes($respostes) {
     $this -> respostes = $respostes;
   }
 
