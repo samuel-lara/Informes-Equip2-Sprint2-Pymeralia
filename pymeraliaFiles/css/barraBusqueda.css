@@ -1,3 +1,8 @@
 #barra-busqueda{
-    justify-content: end;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#boton-crear-questionario{
+    margin-right: 10px;
 }

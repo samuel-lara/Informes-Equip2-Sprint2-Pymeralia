@@ -9,6 +9,7 @@
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/barraBusqueda.css">
     <link href="../css/fontawesome.min.css" rel="stylesheet">
     <link href="../css/brands.min.css" rel="stylesheet">
     <link href="../css/solid.min.css" rel="stylesheet">
@@ -81,10 +82,10 @@
         </nav><!--Header Menu-->
 
     </header>
-    <div class="container overflow-hidden text-center py-3" id="barra-busqueda">
-    <div class="input-group">
+    <div class="container overflow-hidden text-center py-3">
+    <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-info btn-sm" id="boton-crear-questionario">Crear Questionario</button>
+            <button class="btn btn-primary btn-sm" id="boton-crear-questionario">Crear Questionario</button>
         </div>
 
         <div class="form-outline">
@@ -110,7 +111,7 @@
                         <th scope="col">Empresa</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar</button><!--Editar i Eliminar--></th>
+                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button><!--Editar i Eliminar--></th>
                     </tr>
                 </thead>
                 <tbody>
