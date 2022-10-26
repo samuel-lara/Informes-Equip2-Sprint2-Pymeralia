@@ -7,13 +7,14 @@
     <script src="../scripts/bootstrap.bundle.min.js"></script><!--bootstrap-->
     <link rel="stylesheet" href="../css/main copy.css">
     <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/barraBusqueda.css">
     <link href="../css/brands.min.css" rel="stylesheet">
     <link href="../css/solid.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="../css/main.css"><!--header, footer-->
     <link href="../css/estiloCursos.css" rel="stylesheet" />
 
-    <title>Dashboard Curso.</title>
+    <title>Preguntes</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <header class="sticky-top">
@@ -64,18 +65,18 @@
                     </button></span>
                 <div class="collapse navbar-collapse p-0" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-house"></i>Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cursos.html"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-clipboard"></i>Questionarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="emblemas.html"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-book"></i>Informes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="calificaciones.html"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-graduation-cap"></i>Formación</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="calificaciones.html"><i
+                        <li class="nav-item"><a class="nav-link" href="#"><i
                             class="fa-solid fa-address-book"></i>Contacto</a>
-                </li>
+                        </li>
                     </ul>
                 </div>
         </nav><!--Header Menu-->
@@ -83,103 +84,114 @@
     </header>
 
     <div class="container overflow-hidden text-center py-3">
-        
-    </div>
-        
+        <div class="input-group" id="barra-busqueda">
+            <div>
+                <button class="btn btn-primary btn-sm" id="boton-crear-questionario">Crear Preguntas</button>
+            </div>
+    
+            <div class="form-outline">
+              <input type="search" id="form1" class="form-control" placeholder="Buscar"/>
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
 
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
-        <div>
-            <h2>Lista Preguntas</h2>
+        <div class="container overflow-hidden text-center py-3">
+            <h2>Lista de Preguntas</h2>
         </div>
         <div>
-            <table class="table table-striped align-middle">
+            <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
                         <th scope="col"><input type="checkbox"></th>
                         <th scope="col">Pregunta</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col"></th>
+                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button><!--Editar i Eliminar--></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td>Tens antivirus?</td><!--Empresa-->
-                        <td>Samuel Lara</td><!--Autor-->
-                        <td>22/11/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td><!--Editar i Eliminar-->
-                    </tr>
-                    <tr>
-                        <th scope="row"><input type="checkbox"></th>
-                        <td>Tens contrasenya?</td><!--Empresa-->
-                        <td>Ivan Sorribes</td><!--Autor-->
-                        <td>14/10/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td><!--Editar i Eliminar-->
-                    </tr>
-                    <tr>
-                        <th scope="row"><input type="checkbox"></th>
-                        <td>Entres a llocs de dubtosa reputació?</td><!--Empresa-->
+                        <td>Tienes instalado un antivirus?</td><!--Empresa-->
                         <td>Yasir Hayati</td><!--Autor-->
-                        <td>09/09/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning">Editar</button>  <button class="btn btn-danger">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td>13/08/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                    </tr>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Tienes una contrasenya alfanumerica?</td><!--Empresa-->
+                        <td>Ivan Sorribes</td><!--Autor-->
+                        <td>18/08/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                    </tr>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Quantos digitos tiene tu contrasenya?</td><!--Empresa-->
+                        <td>Samuel Lara</td><!--Autor-->
+                        <td>05/08/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+
     <footer class="bg-black text-center text-lg-center mt-auto">
-      <div class="text-center p-3">
-          <div class="fluid-container">
-              <div class="row">
-                  <div id="logo-footer" class="col-6 col-md-3">
-                      <a class="text-light" href="index.html"><img src="../images/logo_pymeshield_black.png"
-                              alt="Logo" width="50px" style="margin-right: 5px;"
-                              class="d-inline-block align-text-middle"><i class="fa-solid fa-copyright"></i>pymeshield
-                          by Pymeralia</a>
-                  </div>
-                  <div class="col-6 col-md-3">
-                      <h6 id="title-footer">Acerca de Pymeralia</h6>
-                      <ul class="list-unstyled mb-0">
-                          <li>
-                              <a href="#" class="text-light">Política de privacidad</a>
-                          </li>
-                          <li>
-                              <a href="#" class="text-light">Política de cookies</a>
-                          </li>
-                          <li>
-                              <a href="#" class="text-light">Aviso legal</a>
-                          </li>
-                          <li>
-                              <a href="#" class="text-light">Ley de protección</a>
-                          </li>
-                      </ul>
-                  </div>
-                  <div class="col-6 col-md-3">
-                      <h6 id="title-footer">Contacto</h6>
-                      <p><i class="fa-solid fa-phone"></i>682849274 <br> <i
-                              class="fa-solid fa-envelope"></i>support@pymeralia.com</p>
-                  </div>
-                  <div class="col-6 col-md-3">
-                      <h6 id="title-footer">RRSS</h6>
-                      <ul class="list-unstyled mb-0" id="footer-rrss">
-                          <li>
-                              <a class="text-light" href="#"><i class="fa-brands fa-tiktok"></i></a>
-                              <a class="text-light" href="#"><i class="fa-brands fa-twitter"></i></a>
-                          </li>
-                          </li>
-                          <li>
-                              <a class="text-light" href="#"><i class="fa-brands fa-instagram"></i></a>
-                              <a class="text-light" href="#"><i class="fa-brands fa-facebook"></i></a>
-                          </li>
-                          <li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </footer><!--footer-->
+        <div class="text-center p-3">
+            <div class="fluid-container">
+                <div class="row">
+                    <div id="logo-footer" class="col-6 col-md-3">
+                        <a class="text-light" href="index.html"><img src="../images/logo_pymeshield_black.png"
+                                alt="Logo" width="50px" style="margin-right: 5px;"
+                                class="d-inline-block align-text-middle"><i class="fa-solid fa-copyright"></i>pymeshield
+                            by Pymeralia</a>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h6 id="title-footer">Acerca de Pymeralia</h6>
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#" class="text-light">Política de privacidad</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-light">Política de cookies</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-light">Aviso legal</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-light">Ley de protección</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h6 id="title-footer">Contacto</h6>
+                        <p><i class="fa-solid fa-phone"></i>682849274 <br> <i
+                                class="fa-solid fa-envelope"></i>support@pymeralia.com</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h6 id="title-footer">RRSS</h6>
+                        <ul class="list-unstyled mb-0" id="footer-rrss">
+                            <li>
+                                <a class="text-light" href="#"><i class="fa-brands fa-tiktok"></i></a>
+                                <a class="text-light" href="#"><i class="fa-brands fa-twitter"></i></a>
+                            </li>
+                            </li>
+                            <li>
+                                <a class="text-light" href="#"><i class="fa-brands fa-instagram"></i></a>
+                                <a class="text-light" href="#"><i class="fa-brands fa-facebook"></i></a>
+                            </li>
+                            <li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
