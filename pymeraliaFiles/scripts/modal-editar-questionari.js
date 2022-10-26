@@ -1,4 +1,11 @@
-var exampleModal = document.getElementById('exampleModal')
+function showModal(name){
+ 
+  $("#exampleModal").modal('show');
+  console.log(name)
+}
+
+
+/*
 exampleModal.addEventListener('show.bs.modal', function (event) {
   // Button that triggered the modal
   var button = event.relatedTarget
@@ -13,4 +20,4 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
 
   modalTitle.textContent = 'Editar ' + recipient
   modalBodyInput.value = recipient
-})
+})*/
