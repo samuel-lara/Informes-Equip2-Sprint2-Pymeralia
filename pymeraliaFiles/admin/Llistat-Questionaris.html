@@ -117,12 +117,12 @@
                 <tbody>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td>Questionario 1</td><!--Nombre Questionario-->
+                        <td id="nombre-questionario-1">Questionario 1</td><!--Nombre Questionario-->
                         <td>Toni Morant</td><!--Representante-->
                         <td>Institut Montsià</td><!--Empresa-->
                         <td>Samuel Lara</td><!--Autor-->
                         <td>22/11/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@Questionario1">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
@@ -131,7 +131,7 @@
                         <td>Fibla S.L.</td><!--Empresa-->
                         <td>Ivan Sorribes</td><!--Autor-->
                         <td>14/10/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@Questionario2">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
@@ -140,12 +140,53 @@
                         <td>Empatica</td><!--Empresa-->
                         <td>Yasir Hayati</td><!--Autor-->
                         <td>09/09/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@Questionario3">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
+
+    <!--Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Editar Questionario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Nombre Questionario:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Representante:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Empresa:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Autor:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Fecha:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Guardar Questionario</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     <footer class="bg-black text-center text-lg-center mt-auto">
@@ -199,6 +240,7 @@
             </div>
         </div>
     </footer>
+    <script src="../scripts/modal-editar-questionari.js"></script>
 </body>
 
 </html>
