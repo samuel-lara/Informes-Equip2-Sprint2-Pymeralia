@@ -1,0 +1,11 @@
+#pregunta{
+    background-color: lightgray;
+    border-radius: 4px;
+    margin-top: 2%;
+    padding:1%;
+}   
+
+.btn{
+    margin-top: 1%;
+    background-color: lightgray;
+}
