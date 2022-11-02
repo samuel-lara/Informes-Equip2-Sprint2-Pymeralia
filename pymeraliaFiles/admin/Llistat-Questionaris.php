@@ -1,3 +1,8 @@
+<?php
+///***Include del archivo que permite conectarnos a la base de datos
+include_once "../includes/config-connexio.php";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Questionarios</title>
+    <title>Lista Cuestionarios</title>
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -68,7 +73,7 @@
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-house"></i>Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="fa-solid fa-clipboard"></i>Questionarios</a></li>
+                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-book"></i>Informes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
@@ -85,7 +90,7 @@
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-questionario">Crear Questionario</button>
+            <button class="btn btn-primary btn-sm" id="boton-crear-questionario">Crear Cuestionario</button>
         </div>
 
         <div class="form-outline">
@@ -99,14 +104,14 @@
 
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
         <div class="container overflow-hidden text-center py-3">
-            <h2>Lista Questionarios</h2>
+            <h2>Lista Cuestionarios</h2>
         </div>
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
                         <th scope="col"><input type="checkbox"></th>
-                        <th scope="col">Nombre Questionario</th>
+                        <th scope="col">Nombre Cuestionario</th>
                         <th scope="col">Representante</th>
                         <th scope="col">Empresa</th>
                         <th scope="col">Autor</th>
@@ -114,35 +119,32 @@
                         <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button><!--Editar i Eliminar--></th>
                     </tr>
                 </thead>
+
+                <!--Tabla que se autogenera con los campos de la base de datos-->
                 <tbody>
+                    <?php 
+                        $sql = "SELECT * FROM test_questionari";
+                        $result = mysqli_query($conn, $sql);
+
+                        while($mostrar = mysqli_fetch_array($result)){
+
+                    ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="nombre-questionario-1">Questionario 1</td><!--Nombre Questionario-->
-                        <td>Toni Morant</td><!--Representante-->
-                        <td>Institut Montsià</td><!--Empresa-->
-                        <td>Samuel Lara</td><!--Autor-->
-                        <td>22/11/2022</td><!--Fecha-->
+                        <td id="nombre-cuestionario-1"><?php echo $mostrar['Nom']?></td><!--Nombre Questionario-->
+                        <td><?php echo $mostrar['Representant']?></td><!--Representante-->
+                        <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
+                        <td><?php echo $mostrar['Autor']?></td><!--Autor-->
+                        <td><?php echo $mostrar['Fecha']?></td><!--Fecha-->
                         <td><button class="btn btn-warning btn-sm" id="editar-questionari-1" onclick="showModal('Toni')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
-                    <tr>
-                        <th scope="row"><input type="checkbox"></th>
-                        <td>Questionario 2</td><!--Nombre Questionario-->
-                        <td>Xavi Fibla</td><!--Representante-->
-                        <td>Fibla S.L.</td><!--Empresa-->
-                        <td>Ivan Sorribes</td><!--Autor-->
-                        <td>14/10/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm" data-bs-target="#exampleModal" onclick="showModal('Samuel')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
-                    </tr>
-                    <tr>
-                        <th scope="row"><input type="checkbox"></th>
-                        <td>Questionario 3</td><!--Nombre Questionario-->
-                        <td>Joan Iglesias</td><!--Representante-->
-                        <td>Empatica</td><!--Empresa-->
-                        <td>Yasir Hayati</td><!--Autor-->
-                        <td>09/09/2022</td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showModal('Pablo')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
-                    </tr>
+
+                    <?php 
+                        }
+                    ?>
                 </tbody>
+
+
             </table>
         </div>
     </div>
@@ -159,7 +161,7 @@
             <div class="modal-body">
               <form>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Nombre Questionario:</label>
+                  <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
                   <input type="text" class="form-control" id="recipient-name">
                 </div>
                 <div class="mb-3">
@@ -182,7 +184,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Guardar Questionario</button>
+              <button type="button" class="btn btn-primary">Guardar Cuestionario</button>
             </div>
           </div>
         </div>
@@ -241,6 +243,10 @@
         </div>
     </footer>
     <script src="../scripts/modal-editar-questionari.js"></script>
+    <?php 
+    ///***Include del archivo que permite desconectarnos de la base de datos
+    include_once "../includes/config-desconnexio.php";
+    ?>
 </body>
 
 </html>
