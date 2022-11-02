@@ -1,6 +1,6 @@
 <?php
-///***Include del archivo que permite conectarnos a la base de datos
-include_once "../includes/config-connexio.php";
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include_once "../includes/config-connexio.php";
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +90,7 @@ include_once "../includes/config-connexio.php";
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-questionario">Crear Cuestionario</button>
+            <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal('Samuel')">Crear Cuestionario</button>
         </div>
 
         <div class="form-outline">
@@ -136,7 +136,7 @@ include_once "../includes/config-connexio.php";
                         <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
                         <td><?php echo $mostrar['Autor']?></td><!--Autor-->
                         <td><?php echo $mostrar['Fecha']?></td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm" id="editar-questionari-1" onclick="showModal('Toni')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['Id']?>" onclick="showModal('Toni')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
 
                     <?php 
@@ -149,8 +149,58 @@ include_once "../includes/config-connexio.php";
         </div>
     </div>
 
+    <!--Modal Crear Cuestionario-->
+    <div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Crear Cuestionario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="Llistat-Questionaris.php" id="test" method="POST">
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
+                  <input type="text" class="form-control" id="Nombre-Cuestionario">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Representante:</label>
+                  <input type="text" class="form-control" id="Representante">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Empresa:</label>
+                    <input type="text" class="form-control" id="Empresa">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Autor:</label>
+                    <input type="text" class="form-control" id="Autor">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Fecha:</label>
+                    <input type="text" class="form-control" id="Fecha">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cuestionario</button>
+             
+                    <?php
+                      if(isset($_POST['Nombre-Cuestionario'])){
+                      $nombreCuestionario = $_POST['Nombre-Cuestionario'];
+                      echo '<script language="javascript">alert("juas");</script>';
+                      }
+                    ?>
+                </div>  
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
 
-    <!--Modal-->
+      
+
+
+    <!--Modal Editar Cuestionario-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -242,10 +292,12 @@ include_once "../includes/config-connexio.php";
             </div>
         </div>
     </footer>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../scripts/modal-editar-questionari.js"></script>
+    <script src="../scripts/checkbox.js"></script>
     <?php 
-    ///***Include del archivo que permite desconectarnos de la base de datos
-    include_once "../includes/config-desconnexio.php";
+        ///***Include del archivo que permite desconectarnos de la base de datos
+        include_once "../includes/config-desconnexio.php";
     ?>
 </body>
 

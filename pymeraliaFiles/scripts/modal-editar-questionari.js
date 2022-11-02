@@ -1,7 +1,7 @@
-function showModal(name){
+function showModal(){
  
-  $("#exampleModal").modal('show');
-  console.log(name)
+  $("#modalCrear").modal('show');
+  
 }
 
 
