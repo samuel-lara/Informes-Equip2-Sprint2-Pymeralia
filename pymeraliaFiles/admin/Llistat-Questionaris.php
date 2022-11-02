@@ -1,13 +1,3 @@
-<?php
-//Eliminar al acabar la prueba y utilizar un include de la conexión
-$host = "mariadb";
-$user = "r00t";
-$password = 'r00t';
-$db_name = "pymeralias2";
-
-$conn = mysqli_connect($host, $user, $password, $db_name);
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -124,32 +114,35 @@ $conn = mysqli_connect($host, $user, $password, $db_name);
                         <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button><!--Editar i Eliminar--></th>
                     </tr>
                 </thead>
-
-                <!--Tabla que se autogenera con los campos de la base de datos-->
                 <tbody>
-                    <?php 
-                        $sql = "SELECT * FROM test_questionari";
-                        $result = mysqli_query($conn, $sql);
-
-                        while($mostrar = mysqli_fetch_array($result)){
-
-                    ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="nombre-questionario-1"><?php echo $mostrar['Nom']?></td><!--Nombre Questionario-->
-                        <td><?php echo $mostrar['Representant']?></td><!--Representante-->
-                        <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
-                        <td><?php echo $mostrar['Autor']?></td><!--Autor-->
-                        <td><?php echo $mostrar['Fecha']?></td><!--Fecha-->
+                        <td id="nombre-questionario-1">Questionario 1</td><!--Nombre Questionario-->
+                        <td>Toni Morant</td><!--Representante-->
+                        <td>Institut Montsià</td><!--Empresa-->
+                        <td>Samuel Lara</td><!--Autor-->
+                        <td>22/11/2022</td><!--Fecha-->
                         <td><button class="btn btn-warning btn-sm" id="editar-questionari-1" onclick="showModal('Toni')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
-
-                    <?php 
-                        }
-                    ?>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Questionario 2</td><!--Nombre Questionario-->
+                        <td>Xavi Fibla</td><!--Representante-->
+                        <td>Fibla S.L.</td><!--Empresa-->
+                        <td>Ivan Sorribes</td><!--Autor-->
+                        <td>14/10/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm" data-bs-target="#exampleModal" onclick="showModal('Samuel')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                    </tr>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Questionario 3</td><!--Nombre Questionario-->
+                        <td>Joan Iglesias</td><!--Representante-->
+                        <td>Empatica</td><!--Empresa-->
+                        <td>Yasir Hayati</td><!--Autor-->
+                        <td>09/09/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showModal('Pablo')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                    </tr>
                 </tbody>
-
-
             </table>
         </div>
     </div>
