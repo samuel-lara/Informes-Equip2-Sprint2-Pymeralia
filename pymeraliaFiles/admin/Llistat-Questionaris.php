@@ -143,8 +143,6 @@
                         }
                     ?>
                 </tbody>
-
-
             </table>
         </div>
     </div>
@@ -158,48 +156,56 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="Llistat-Questionaris.php" id="test" method="POST">
+              <form id="test" method="POST">
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
-                  <input type="text" class="form-control" id="Nombre-Cuestionario">
+                  <input type="text" class="form-control" name="Nombre-Cuestionario" id="Nombre-Cuestionario">
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Representante:</label>
-                  <input type="text" class="form-control" id="Representante">
+                  <input type="text" class="form-control" name="Representante" id="Representante">
                 </div>
                 <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Empresa:</label>
-                    <input type="text" class="form-control" id="Empresa">
-                  </div>
-                  <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Autor:</label>
-                    <input type="text" class="form-control" id="Autor">
-                  </div>
-                  <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Fecha:</label>
-                    <input type="text" class="form-control" id="Fecha">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar Cuestionario</button>
-             
-                    <?php
-                      if(isset($_POST['Nombre-Cuestionario'])){
-                      $nombreCuestionario = $_POST['Nombre-Cuestionario'];
-                      echo '<script language="javascript">alert("juas");</script>';
-                      }
-                    ?>
-                </div>  
-              </form>
-            </div>
-            
-          </div>
+                  <label for="message-text" class="col-form-label">Empresa:</label>
+                  <input type="text" class="form-control" name="Empresa" id="Empresa">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Autor:</label>
+                  <input type="text" class="form-control" name="Autor" id="Autor">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Fecha:</label>
+                  <input type="date" class="form-control" name="Fecha" id="Fecha">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary">Guardar Cuestionario</button>
+              </div>  
+            </form>
+          </div>   
         </div>
       </div>
+    </div> 
 
-      
+    <!--Insert del campos y zona donde se mostrará el mensaje de validación o error de la inserción del código-->
+    <?php
+      if(isset($_POST['Nombre-Cuestionario'])){
+        $nombreCuestionario = $_POST['Nombre-Cuestionario'];
+        $representante = $_POST['Representante'];
+        $empresa = $_POST['Empresa'];
+        $autor = $_POST['Autor'];
+        $fecha = $_POST['Fecha'];
+                
 
+        ///*** Query que hace el Insert a la base de datos
+        $query = "INSERT INTO `test_questionari`(`Nom`, `Representant`, `Empresa`, `Autor`, `Fecha`) VALUES ('$nombreCuestionario','$representante', '$empresa','$autor','$fecha')";
+                
+        $resultQueryInsert = mysqli_query($conn, $query);
 
+        header("Location: Llistat-Questionaris.php");
+      }
+    ?>
+              
     <!--Modal Editar Cuestionario-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
