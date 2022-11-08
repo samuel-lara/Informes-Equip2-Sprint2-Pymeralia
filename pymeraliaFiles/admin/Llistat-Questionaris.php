@@ -1,10 +1,9 @@
 <?php
-    ///***Include del archivo que permite conectarnos a la base de datos
-    include_once "../includes/config-connexio.php";
     include_once "../clases/QuestionariClass.php";
+    include_once "../includes/config-connexio.php";
 
     //Instanciamos el Objeto Questionari
-    $questionari = new Questionari;
+    $questionari = new Questionari();
 ?>
 
 <!DOCTYPE html>
@@ -127,10 +126,8 @@
                 <!--Tabla que se autogenera con los campos de la base de datos-->
                 <tbody>
                     <?php 
-                      //$sql = "SELECT * FROM test_questionari";
-                      //$result = mysqli_query($conn, $sql);
-
-                      $questionari.showQuestionari($conn, $sql, "test_questionari");
+                      ///*** */
+                      $result = $questionari->showQuestionari("test_questionari");
 
                       while($mostrar = mysqli_fetch_array($result)){
                     ?>
@@ -151,6 +148,23 @@
             </table>
         </div>
     </div>
+
+    <!--Insert del campos y zona donde se mostrará el mensaje de validación o error de la inserción del código-->
+    <?php
+    if(isset($_POST['Nombre-Cuestionario'])){
+      $nombreCuestionario = $_POST['Nombre-Cuestionario'];
+      $representante = $_POST['Representante'];
+      $empresa = $_POST['Empresa'];
+      $autor = $_POST['Autor'];
+      $fecha = $_POST['Fecha'];
+              
+      ///*** Query que hace el Insert a la base de datos
+      $query = "INSERT INTO `test_questionari`(`Nom`, `Representant`, `Empresa`, `Autor`, `Fecha`) VALUES ('$nombreCuestionario','$representante', '$empresa','$autor','$fecha')";
+              
+      $resultQueryInsert = mysqli_query($conn, $query);
+      //$questionari->addQuestionari()
+    }
+    ?>
 
     <!--Modal Crear Cuestionario-->
     <div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -184,31 +198,15 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary">Guardar Cuestionario</button>
+
+                  <!--Enviar el cuestionario solo cuando le doy click al botón-->
+                  <button class="btn btn-primary" onclick="">Guardar Cuestionario</button>
               </div>  
             </form>
           </div>   
         </div>
       </div>
     </div> 
-
-    <!--Insert del campos y zona donde se mostrará el mensaje de validación o error de la inserción del código-->
-    <?php
-      if(isset($_POST['Nombre-Cuestionario'])){
-        $nombreCuestionario = $_POST['Nombre-Cuestionario'];
-        $representante = $_POST['Representante'];
-        $empresa = $_POST['Empresa'];
-        $autor = $_POST['Autor'];
-        $fecha = $_POST['Fecha'];
-                
-
-        ///*** Query que hace el Insert a la base de datos
-        $query = "INSERT INTO `test_questionari`(`Nom`, `Representant`, `Empresa`, `Autor`, `Fecha`) VALUES ('$nombreCuestionario','$representante', '$empresa','$autor','$fecha')";
-                
-        $resultQueryInsert = mysqli_query($conn, $query);
-        //header("Location: Llistat-Questionaris.php");
-      }
-    ?>
               
     <!--Modal Editar Cuestionario-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

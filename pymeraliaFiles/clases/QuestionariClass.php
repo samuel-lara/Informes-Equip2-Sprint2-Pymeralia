@@ -1,4 +1,8 @@
 <?php 
+
+
+
+
 class Questionari {
     private $estat;
     private $preguntes;
@@ -35,9 +39,23 @@ class Questionari {
   }
 
   /** CRUD Questionari */  
+/*
+  private function addQuestionari($conn){
+    if(isset($_POST['Nombre-Cuestionario'])){
+      $nombreCuestionario = $_POST['Nombre-Cuestionario'];
+      $representante = $_POST['Representante'];
+      $empresa = $_POST['Empresa'];
+      $autor = $_POST['Autor'];
+      $fecha = $_POST['Fecha'];
+              
+      ///*** Query que hace el Insert a la base de datos
+      $query = "INSERT INTO `test_questionari`(`Nom`, `Representant`, `Empresa`, `Autor`, `Fecha`) VALUES ('$nombreCuestionario','$representante', '$empresa','$autor','$fecha')";
+              
+      $resultQueryInsert = mysqli_query($conn, $query);
 
-  private function addQuestionari(){
-  }
+      return $resultQueryInsert;
+    }
+  }*/
   
   private function editQuestionari(){
   }
@@ -46,10 +64,16 @@ class Questionari {
   }
   
   /** Consulta que fa un SELECT a la base de dades */
-  public function showQuestionari($conn, $sql, $tabla){
+  public function showQuestionari($tabla){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include_once "../includes/config-connexio.php";
     $sql = "SELECT * FROM $tabla";
     $result = mysqli_query($conn, $sql);
+
+    return $result;
   }
 }
+
+
 
 ?>
