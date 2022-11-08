@@ -165,7 +165,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="test" method="POST">
+              <form id="test" method="POST" action="http://localhost:83/clases/QuestionariClass.php"/>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
                   <input type="text" class="form-control" name="Nombre-Cuestionario" id="Nombre-Cuestionario">
@@ -190,15 +190,16 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
                   <!--Enviar el cuestionario solo cuando le doy click al botón-->
-                  <button class="btn btn-primary" onclick="<?$questionari->addQuestionari()?>">Guardar Cuestionario</button>
+                  <button class="btn btn-primary" onclick="sendData(); return false;">Guardar Cuestionario</button>
               </div>  
             </form>
           </div>   
         </div>
       </div>
     </div> 
-              
-    <!--Modal Editar Cuestionario-->
+       
+    <!--
+    Modal Editar Cuestionario
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -237,7 +238,7 @@
           </div>
         </div>
       </div>
-
+      -->
 
     <footer class="bg-black text-center text-lg-center mt-auto">
         <div class="text-center p-3">
@@ -298,5 +299,6 @@
         include_once "../includes/config-desconnexio.php";
     ?>
 </body>
+
 
 </html>
