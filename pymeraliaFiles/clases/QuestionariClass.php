@@ -1,12 +1,8 @@
 <?php 
-
-
-
-
 class Questionari {
-    private $estat;
-    private $preguntes;
-    private $respostes;
+  private $estat;
+  private $preguntes;
+  private $respostes;
   // Methods
   /*function construct($preguntes, $respostes, $estat) {
     $this->preguntes = $preguntes;
@@ -38,9 +34,12 @@ class Questionari {
     $this -> respostes = $respostes;
   }
 
-  /** CRUD Questionari */  
-/*
-  private function addQuestionari($conn){
+  /** CRUD Questionari */
+  //private function addQuestionari()
+  public function addQuestionari(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
+
     if(isset($_POST['Nombre-Cuestionario'])){
       $nombreCuestionario = $_POST['Nombre-Cuestionario'];
       $representante = $_POST['Representante'];
@@ -53,9 +52,10 @@ class Questionari {
               
       $resultQueryInsert = mysqli_query($conn, $query);
 
-      return $resultQueryInsert;
+      ///***Include del archivo que permite desconectarnos a la base de datos
+      include "../includes/config-desconnexio.php";
     }
-  }*/
+  }
   
   private function editQuestionari(){
   }
@@ -63,17 +63,26 @@ class Questionari {
   private function deleteQuestionari(){
   }
   
-  /** Consulta que fa un SELECT a la base de dades */
+  /**
+   * Consulta que fa un SELECT a la base de dades per a mostrar els camps de la taula seleccionada
+   * 
+   * showQuestionari
+   *
+   * @param mixed $tabla
+   * return void
+   */
   public function showQuestionari($tabla){
     ///***Include del archivo que permite conectarnos a la base de datos
-    include_once "../includes/config-connexio.php";
+    include "../includes/config-connexio.php";
+
     $sql = "SELECT * FROM $tabla";
     $result = mysqli_query($conn, $sql);
 
     return $result;
+
+    ///***Include del archivo que permite desconectarnos a la base de datos
+    include "../includes/config-desconnexio.php";
   }
 }
-
-
 
 ?>

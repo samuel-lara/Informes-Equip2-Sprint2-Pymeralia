@@ -1,6 +1,5 @@
 <?php
     include_once "../clases/QuestionariClass.php";
-    include_once "../includes/config-connexio.php";
 
     //Instanciamos el Objeto Questionari
     $questionari = new Questionari();
@@ -58,6 +57,7 @@
                                     <li><a class="dropdown-item" href="../cliente/index.html"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
                                 </ul>
                             </li>
+                          </ul>
                     </div>
                 </div>
             </div>
@@ -151,19 +151,9 @@
 
     <!--Insert del campos y zona donde se mostrará el mensaje de validación o error de la inserción del código-->
     <?php
-    if(isset($_POST['Nombre-Cuestionario'])){
-      $nombreCuestionario = $_POST['Nombre-Cuestionario'];
-      $representante = $_POST['Representante'];
-      $empresa = $_POST['Empresa'];
-      $autor = $_POST['Autor'];
-      $fecha = $_POST['Fecha'];
-              
-      ///*** Query que hace el Insert a la base de datos
-      $query = "INSERT INTO `test_questionari`(`Nom`, `Representant`, `Empresa`, `Autor`, `Fecha`) VALUES ('$nombreCuestionario','$representante', '$empresa','$autor','$fecha')";
-              
-      $resultQueryInsert = mysqli_query($conn, $query);
-      //$questionari->addQuestionari()
-    }
+    
+      
+    
     ?>
 
     <!--Modal Crear Cuestionario-->
@@ -200,7 +190,7 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
                   <!--Enviar el cuestionario solo cuando le doy click al botón-->
-                  <button class="btn btn-primary" onclick="">Guardar Cuestionario</button>
+                  <button class="btn btn-primary" onclick="<?$questionari->addQuestionari()?>">Guardar Cuestionario</button>
               </div>  
             </form>
           </div>   
