@@ -4,11 +4,11 @@ class Questionari {
     private $preguntes;
     private $respostes;
   // Methods
-  function construct($preguntes, $respostes, $estat) {
+  /*function construct($preguntes, $respostes, $estat) {
     $this->preguntes = $preguntes;
     $this->respostes = $respostes;
     $this->estat = $estat;
-  }
+  }*/
 
   public function getEstat() {
     return $this->estat;
@@ -45,7 +45,10 @@ class Questionari {
   private function deleteQuestionari(){
   }
   
-  public function showQuestionari(){
+  /** Consulta que fa un SELECT a la base de dades */
+  public function showQuestionari($conn, $sql, $tabla){
+    $sql = "SELECT * FROM $tabla";
+    $result = mysqli_query($conn, $sql);
   }
 }
 
