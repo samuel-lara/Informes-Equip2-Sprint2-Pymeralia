@@ -1,6 +1,10 @@
 <?php
     ///***Include del archivo que permite conectarnos a la base de datos
     include_once "../includes/config-connexio.php";
+    include_once "../clases/QuestionariClass.php";
+
+    //Instanciamos el Objeto Questionari
+    $questionari = new Questionari;
 ?>
 
 <!DOCTYPE html>
@@ -123,11 +127,12 @@
                 <!--Tabla que se autogenera con los campos de la base de datos-->
                 <tbody>
                     <?php 
-                        $sql = "SELECT * FROM test_questionari";
-                        $result = mysqli_query($conn, $sql);
+                      //$sql = "SELECT * FROM test_questionari";
+                      //$result = mysqli_query($conn, $sql);
 
-                        while($mostrar = mysqli_fetch_array($result)){
+                      $questionari.showQuestionari($conn, $sql, "test_questionari");
 
+                      while($mostrar = mysqli_fetch_array($result)){
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
@@ -201,8 +206,7 @@
         $query = "INSERT INTO `test_questionari`(`Nom`, `Representant`, `Empresa`, `Autor`, `Fecha`) VALUES ('$nombreCuestionario','$representante', '$empresa','$autor','$fecha')";
                 
         $resultQueryInsert = mysqli_query($conn, $query);
-
-        header("Location: Llistat-Questionaris.php");
+        //header("Location: Llistat-Questionaris.php");
       }
     ?>
               
