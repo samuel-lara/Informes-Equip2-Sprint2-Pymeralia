@@ -20,6 +20,7 @@
     <link href="../css/fontawesome.min.css" rel="stylesheet">
     <link href="../css/brands.min.css" rel="stylesheet">
     <link href="../css/solid.min.css" rel="stylesheet">
+    <script src="../scripts/checkbox.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 
@@ -113,7 +114,7 @@
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
-                        <th scope="col"><input type="checkbox"></th>
+                        <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
                         <th scope="col">Nombre Cuestionario</th>
                         <th scope="col">Representante</th>
                         <th scope="col">Empresa</th>
@@ -138,7 +139,7 @@
                         <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
                         <td><?php echo $mostrar['Autor']?></td><!--Autor-->
                         <td><?php echo $mostrar['Fecha']?></td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['Id']?>" onclick="showModal('Toni')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['Id']?>" onclick="showModal()">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
 
                     <?php 
@@ -284,9 +285,10 @@
             </div>
         </div>
     </footer>
+
+
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../scripts/modal-editar-questionari.js"></script>
-    <script src="../scripts/checkbox.js"></script>
 </body>
 
 
