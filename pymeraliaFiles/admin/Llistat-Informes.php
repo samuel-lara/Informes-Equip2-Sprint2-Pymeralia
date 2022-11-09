@@ -1,3 +1,8 @@
+<?php
+    include_once "../clases/informeclass.php";
+    $informe = new Informe();
+    
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -111,71 +116,35 @@
                     <tr>
                         <th scope="col"><input type="checkbox" onclick="marcar(this);"></th>
                         <th scope="col">Nombre informe</th>
-                        <th scope="col">Nombre Questionario</th>
                         <th scope="col">Representante</th>
                         <th scope="col">Empresa</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button>
+                        <th scope="col"><a class="btn btn-danger btn-sm">Eliminar toda la selección</a>
                             <!--Editar i Eliminar-->
                         </th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php 
+                      ///*** */
+                      $result = $informe->showInforme("Informes");
+
+                      while($mostrar = mysqli_fetch_array($result)){
+                    ?>
                     <tr>
-                        <th scope="row"><input type="checkbox" name="check1" value="valor1"></th>
-                        <td>Informe 1</td>
-                        <!--Nombre Questionario-->
-                        <td>Questionario 1</td>
-                        <!--Nombre Questionario-->
-                        <td>Toni Morant</td>
-                        <!--Representante-->
-                        <td>Institut Montsià</td>
-                        <!--Empresa-->
-                        <td>Samuel Lara</td>
-                        <!--Autor-->
-                        <td>22/11/2022</td>
-                        <!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm">Editar</button> <button
-                                class="btn btn-danger btn-sm">Eliminar</button></td>
-                        <!--Editar i Eliminar-->
+                        <th scope="row"><input type="checkbox"></th>
+                        <td id="nombre-cuestionario-"><?php echo $mostrar['Nom_Informe']?></td><!--Nombre Questionario-->
+                        <td><?php echo $mostrar['Representante']?></td><!--Representante-->
+                        <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
+                        <td><?php echo $mostrar['Autor']?></td><!--Autor-->
+                        <td><?php echo $mostrar['Data_Informe']?></td><!--Fecha-->
+                        <td><button class="btn btn-danger btn-sm" value="<?php echo $mostrar['Id_Informe']?>">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
-                    <tr>
-                        <th scope="row"><input type="checkbox" name="check2" value="valor2"></th>
-                        <td>Informe 2</td>
-                        <!--Nombre Questionario-->
-                        <td>Questionario 2</td>
-                        <!--Nombre Questionario-->
-                        <td>Xavi Fibla</td>
-                        <!--Representante-->
-                        <td>Fibla S.L.</td>
-                        <!--Empresa-->
-                        <td>Ivan Sorribes</td>
-                        <!--Autor-->
-                        <td>14/10/2022</td>
-                        <!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm">Editar</button> <button
-                                class="btn btn-danger btn-sm">Eliminar</button></td>
-                        <!--Editar i Eliminar-->
-                    </tr>
-                    <tr>
-                        <th scope="row"><input type="checkbox" name="check3" value="valor3"></th>
-                        <td>Infomre 3</td>
-                        <!--Nombre Questionario-->
-                        <td>Questionario 3</td>
-                        <!--Nombre Questionario-->
-                        <td>Joan Iglesias</td>
-                        <!--Representante-->
-                        <td>Empatica</td>
-                        <!--Empresa-->
-                        <td>Yasir Hayati</td>
-                        <!--Autor-->
-                        <td>09/09/2022</td>
-                        <!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm">Editar</button> <button
-                                class="btn btn-danger btn-sm">Eliminar</button></td>
-                        <!--Editar i Eliminar-->
-                    </tr>
+
+                    <?php 
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>

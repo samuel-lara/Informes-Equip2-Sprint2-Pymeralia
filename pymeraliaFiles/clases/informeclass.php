@@ -18,13 +18,13 @@ class Informe {
    * @param  mixed $intervencio
    * @return void
    */
-  function __construct($estat, $resum, $data, $nivellRisc, $intervencio) {
-    $this->estat = $estat;
-    $this->resum = $resum;
-    $this->data = $data;
-    $this->nivellRisc = $nivellRisc;
-    $this->intervencio = $intervencio;
-  }
+  //function __construct($estat, $resum, $data, $nivellRisc, $intervencio) {
+  //  $this->estat = $estat;
+  //  $this->resum = $resum;
+  //  $this->data = $data;
+  //  $this->nivellRisc = $nivellRisc;
+  //  $this->intervencio = $intervencio;
+  //}
 
   /** GETTERS i SETTERS */  
   /**
@@ -149,7 +149,14 @@ class Informe {
    * @return void
    */
   private function deleteInforme(){
+    include "../includes/config-connexio.php";
 
+    $sqlQuery = "DELETE FROM $table WHERE Id_Informe = ;";
+    $result = mysqli_query($conn, $sqlQuery);
+
+    return $result;
+
+    include "../includes/config-desconnexio.php";
   }
   
   /**
@@ -157,8 +164,15 @@ class Informe {
    *
    * @return void
    */
-  public function showInforme(){
+  public function showInforme($table){
+    include "../includes/config-connexio.php";
 
+    $sqlQuery = "SELECT * FROM $table";
+    $result = mysqli_query($conn, $sqlQuery);
+
+    return $result;
+
+    include "../includes/config-desconnexio.php";
   }
 
   /** METODES */  
@@ -171,3 +185,4 @@ class Informe {
 
   }
 }
+?>
