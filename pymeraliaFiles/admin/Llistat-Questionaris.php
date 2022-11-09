@@ -93,7 +93,7 @@
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal('Samuel')">Crear Cuestionario</button>
+            <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal()">Crear Cuestionario</button>
         </div>
 
         <div class="form-outline">
@@ -149,13 +149,6 @@
         </div>
     </div>
 
-    <!--Insert del campos y zona donde se mostrará el mensaje de validación o error de la inserción del código-->
-    <?php
-    
-      
-    
-    ?>
-
     <!--Modal Crear Cuestionario-->
     <div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -165,7 +158,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="test" method="POST" action="http://localhost:83/clases/QuestionariClass.php"/>
+              <form id="test" action="../actions/crear.php" method="POST">
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
                   <input type="text" class="form-control" name="Nombre-Cuestionario" id="Nombre-Cuestionario">
@@ -190,7 +183,7 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
                   <!--Enviar el cuestionario solo cuando le doy click al botón-->
-                  <button class="btn btn-primary" onclick="sendData(); return false;">Guardar Cuestionario</button>
+                  <button class="btn btn-primary" type="submit">Guardar Cuestionario</button>
               </div>  
             </form>
           </div>   
@@ -294,10 +287,6 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../scripts/modal-editar-questionari.js"></script>
     <script src="../scripts/checkbox.js"></script>
-    <?php 
-        ///***Include del archivo que permite desconectarnos de la base de datos
-        include_once "../includes/config-desconnexio.php";
-    ?>
 </body>
 
 
