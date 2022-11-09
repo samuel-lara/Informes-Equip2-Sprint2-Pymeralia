@@ -116,12 +116,11 @@
                     <tr>
                         <th scope="col"><input type="checkbox" onclick="marcar(this);"></th>
                         <th scope="col">Nombre informe</th>
-                        <th scope="col">Nombre Questionario</th>
                         <th scope="col">Representante</th>
                         <th scope="col">Empresa</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button>
+                        <th scope="col"><a class="btn btn-danger btn-sm">Eliminar toda la selección</a>
                             <!--Editar i Eliminar-->
                         </th>
                     </tr>
@@ -129,18 +128,18 @@
                 <tbody>
                 <?php 
                       ///*** */
-                      //$result = $informe->showInforme("test_questionari");
+                      $result = $informe->showInforme("Informes");
 
                       while($mostrar = mysqli_fetch_array($result)){
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="nombre-cuestionario-1"><?php echo $mostrar['Nom_Informe']?></td><!--Nombre Questionario-->
+                        <td id="nombre-cuestionario-"><?php echo $mostrar['Nom_Informe']?></td><!--Nombre Questionario-->
                         <td><?php echo $mostrar['Representante']?></td><!--Representante-->
                         <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
                         <td><?php echo $mostrar['Autor']?></td><!--Autor-->
                         <td><?php echo $mostrar['Data_Informe']?></td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['Id']?>" onclick="showModal('Toni')">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td><button class="btn btn-danger btn-sm" value="<?php echo $mostrar['Id_Informe']?>">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
 
                     <?php 
