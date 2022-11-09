@@ -7,6 +7,7 @@ services:
             - 'mariadb:db'
         ports:
             - 83:80
+        build: .
         volumes:
             - "./pymeraliaFiles:/var/www/html"
     nodejs:
