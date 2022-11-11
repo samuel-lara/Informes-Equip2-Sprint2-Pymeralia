@@ -148,10 +148,10 @@ class Informe {
    *
    * @return void
    */
-  private function deleteInforme(){
+  public function deleteInforme($table, $id){
     include "../includes/config-connexio.php";
 
-    $sqlQuery = "DELETE FROM $table WHERE Id_Informe = ;";
+    $sqlQuery = "DELETE FROM $table WHERE Id_Informe = $id;";
     $result = mysqli_query($conn, $sqlQuery);
 
     return $result;
