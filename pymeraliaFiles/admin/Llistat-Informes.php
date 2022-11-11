@@ -5,6 +5,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["id_eliminar"])){
         $informe->deleteInforme("Informes", $_POST['id_eliminar']);
         unset($_POST['id_eliminar']);
+        header('Location: Llistat-Informes.php');   
     }
 ?>
 <!DOCTYPE html>
