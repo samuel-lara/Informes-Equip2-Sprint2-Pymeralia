@@ -169,7 +169,7 @@ class Informe {
 
     $sqlQuery = "SELECT * FROM reports WHERE hidden = 0";
     $result = mysqli_query($conn, $sqlQuery);
-
+    //var_dump($result);
     return $result;
 
     include "../includes/config-desconnexio.php";
