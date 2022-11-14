@@ -1,6 +1,12 @@
 <?php
     include_once "../clases/informeclass.php";
     $informe = new Informe();
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["id_eliminar"])){
+        $informe->deleteInforme($_POST['id_eliminar']);
+        unset($_POST['id_eliminar']);
+        header('Location: Llistat-Informes.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -120,9 +126,6 @@
                     <tr>
                         <th scope="col"><input type="checkbox" onclick="marcar(this);"></th>
                         <th scope="col">Nombre informe</th>
-                        <th scope="col">Representante</th>
-                        <th scope="col">Empresa</th>
-                        <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
                         <th scope="col"><a class="btn btn-danger btn-sm">Eliminar toda la selección</a>
                             <!--Editar i Eliminar-->
@@ -132,29 +135,19 @@
                 <tbody>
                 <?php 
                       ///*** */
-                      $result = $informe->showInforme("Informes");
+                      $result = Informe::showInforme();
 
                       while($mostrar = mysqli_fetch_array($result)){
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="nombre-cuestionario-"><?php echo $mostrar['Nom_Informe']?></td><!--Nombre Questionario-->
-                        <td><?php echo $mostrar['Representante']?></td><!--Representante-->
-                        <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
-                        <td><?php echo $mostrar['Autor']?></td><!--Autor-->
-                        <td><?php echo $mostrar['Data_Informe']?></td><!--Fecha-->
+                        <td id="nombre-cuestionario-"><?php echo $mostrar['name_report']?></td><!--Nombre Questionario-->
+                        <td><?php echo $mostrar['date_report']?></td><!--Fecha-->
                         <td>
                         <form action= "<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                            <input type="hidden" value="<?php echo $mostrar['Id_Informe']?>" name="id_eliminar">
+                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
                             <input class="btn btn-danger btn-sm" type="submit" value="Eliminar">
                         </form>
-                        <?php
-                            if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["id_eliminar"])){
-                                $informe->deleteInforme("Informes", $_POST['id_eliminar']);
-                                unset($_POST['id_eliminar']);
-                                header('Location: Llistat-Informes.php')
-                            }
-                        ?>
                         </td><!--Editar i Eliminar-->
                     </tr>
 
@@ -169,7 +162,7 @@
 
     <footer class="bg-black text-center text-lg-center mt-auto">
         <div class="text-center p-3">
-            <div class="fluid-container">
+             <div class="fluid-container">
                 <div class="row">
                     <div id="logo-footer" class="col-6 col-md-3">
                         <a class="text-light" href="index.html"><img src="../images/logo_pymeshield_black.png"

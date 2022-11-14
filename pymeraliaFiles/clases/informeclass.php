@@ -148,10 +148,10 @@ class Informe {
    *
    * @return void
    */
-  public function deleteInforme($table, $id){
+  public function deleteInforme($id){
     include "../includes/config-connexio.php";
 
-    $sqlQuery = "DELETE FROM $table WHERE Id_Informe = $id;";
+    $sqlQuery = "UPDATE reports SET hidden = 1 WHERE id_report = $id";
     $result = mysqli_query($conn, $sqlQuery);
 
     return $result;
@@ -164,10 +164,10 @@ class Informe {
    *
    * @return void
    */
-  public function showInforme($table){
+  public static function showInforme(){
     include "../includes/config-connexio.php";
 
-    $sqlQuery = "SELECT * FROM $table";
+    $sqlQuery = "SELECT * FROM reports WHERE hidden = 0";
     $result = mysqli_query($conn, $sqlQuery);
 
     return $result;
