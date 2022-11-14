@@ -1,7 +1,12 @@
 <?php
     include_once "../clases/informeclass.php";
     $informe = new Informe();
-    
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["id_eliminar"])){
+        $informe->deleteInforme("Informes", $_POST['id_eliminar']);
+        unset($_POST['id_eliminar']);
+        header('Location: ??Llistat-Informes.php')
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,6 +25,11 @@
     <link href="../css/solid.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <script src="../scripts/checkbox.js"></script>
+    <script>
+        /*fucntion eliminar(id){
+
+        }*/
+    </script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -139,7 +149,12 @@
                         <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
                         <td><?php echo $mostrar['Autor']?></td><!--Autor-->
                         <td><?php echo $mostrar['Data_Informe']?></td><!--Fecha-->
-                        <td><button class="btn btn-danger btn-sm" value="<?php echo $mostrar['Id_Informe']?>">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td>
+                        <form action= "<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                            <input type="hidden" value="<?php echo $mostrar['Id_Informe']?>" name="id_eliminar">
+                            <input class="btn btn-danger btn-sm" type="submit" value="Eliminar">
+                        </form>
+                        </td><!--Editar i Eliminar-->
                     </tr>
 
                     <?php 
