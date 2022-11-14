@@ -1,12 +1,6 @@
 <?php
     include_once "../clases/informeclass.php";
     $informe = new Informe();
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["id_eliminar"])){
-        $informe->deleteInforme("Informes", $_POST['id_eliminar']);
-        unset($_POST['id_eliminar']);
-        header('Location: ??Llistat-Informes.php')
-    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -154,6 +148,13 @@
                             <input type="hidden" value="<?php echo $mostrar['Id_Informe']?>" name="id_eliminar">
                             <input class="btn btn-danger btn-sm" type="submit" value="Eliminar">
                         </form>
+                        <?php
+                            if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["id_eliminar"])){
+                                $informe->deleteInforme("Informes", $_POST['id_eliminar']);
+                                unset($_POST['id_eliminar']);
+                                header('Location: Llistat-Informes.php')
+                            }
+                        ?>
                         </td><!--Editar i Eliminar-->
                     </tr>
 
