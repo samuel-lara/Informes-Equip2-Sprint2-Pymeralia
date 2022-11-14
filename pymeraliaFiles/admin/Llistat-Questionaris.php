@@ -115,7 +115,6 @@
                 <thead>
                     <tr>
                         <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
-                        <th scope="col">Id</th>
                         <th scope="col">Nombre Cuestionario</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
@@ -133,7 +132,6 @@
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td><?php echo $mostrar['id_questionary']?></td><!--Autor-->
                         <td id="nombre-cuestionario-1"><?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
                         <td><?php echo $mostrar['autor_questionary']?></td><!--Representante-->
                         <td><?php echo $mostrar['date_questionary']?></td><!--Autor-->
