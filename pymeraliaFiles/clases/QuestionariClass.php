@@ -68,22 +68,31 @@ class Questionari {
   }
 
   /** CRUD Questionari */
-  //private function addQuestionari()
-  public function addQuestionari($nombreCuestionario, $representante, $empresa, $autor, $fecha){
+  
+  /**
+   * addQuestionari
+   *
+   * Método que crea un nuevo cuestionario en la base de datos
+   * 
+   * @param  mixed $nombre_cuestionario
+   * @param  mixed $autor_cuestionario
+   * @param  mixed $fecha_cuestionario
+   * return void
+   */
+  public function addQuestionari($nombre_cuestionario, $autor_cuestionario, $fecha_cuestionario){
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
 
-    if(isset($_POST['Nombre-Cuestionario']) != ""){
+    if(isset($_POST['name_questionary']) != ""){
           
-      ///*** Query que hace el Insert a la base de datos
-      $query = "INSERT INTO `test_questionari`(`Nom`, `Representant`, `Empresa`, `Autor`, `Fecha`) VALUES ('$nombreCuestionario','$representante', '$empresa','$autor','$fecha')";
+      ///*** Query que hace el Insert a la base de datos con algunos parámetros prestablecidos
+      $query = "INSERT INTO `questionnaries`(`name_questionary`, `autor_questionary`, `date_questionary`, `hidden`, `id_user`) VALUES ('$nombre_cuestionario','$autor_cuestionario','$fecha_cuestionario', 0, NULL)";
 
-      //$resultQueryInsert = mysqli_query($conn, $query);
-              
+      ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
       if($conn->query($query) != ""){
-        header("Location: ../admin/Llistat-QUestionaris.php");
+        header("Location: ../admin/Llistat-Questionaris.php");
       }else{
-        header("Location: ../admin/Llistat-QUestionaris.php");
+        header("Location: ../admin/Llistat-Questionaris.php");
       }
       
       ///***Include del archivo que permite desconectarnos a la base de datos
@@ -94,8 +103,33 @@ class Questionari {
   private function editQuestionari(){
   }
   
-  private function deleteQuestionari(){
+
+
+
+
+
+  public function deleteQuestionari(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
+
+    $query = "UPDATE questionnaires
+    SET hidden = 1
+    WHERE id_questionart = $id_cuestionario";
+
+    //$result = mysqli_query($conn, $sql);
+
+    ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
+    if($conn->query($query) != ""){
+      header("Location: ../admin/Llistat-Questionaris.php");
+    }else{
+      header("Location: ../admin/Llistat-Questionaris.php");
+    }
+
+    ///***Include del archivo que permite desconectarnos a la base de datos
+    include "../includes/config-desconnexio.php";
   }
+
+
   
   /**
    * Consulta que fa un SELECT a la base de dades per a mostrar els camps de la taula seleccionada
@@ -109,12 +143,11 @@ class Questionari {
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
 
-    $sql = "SELECT * FROM $tabla";
+    ///*** Consulta que recoge los campos filtrandolos por un campo para poder mostrar o no
+    $sql = "SELECT * FROM $tabla WHERE hidden = 0";
     $result = mysqli_query($conn, $sql);
 
     return $result;
-
-    header("Location: ../admin/Llistat-Preguntes.html");
 
     ///***Include del archivo que permite desconectarnos a la base de datos
     include "../includes/config-desconnexio.php";

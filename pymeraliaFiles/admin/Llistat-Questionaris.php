@@ -116,8 +116,6 @@
                     <tr>
                         <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
                         <th scope="col">Nombre Cuestionario</th>
-                        <th scope="col">Representante</th>
-                        <th scope="col">Empresa</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
                         <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button><!--Editar i Eliminar--></th>
@@ -128,18 +126,19 @@
                 <tbody>
                     <?php 
                       ///*** */
-                      $result = $questionari->showQuestionari("test_questionari");
+                      $result = $questionari->showQuestionari("questionnaries");
 
                       while($mostrar = mysqli_fetch_array($result)){
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="nombre-cuestionario-1"><?php echo $mostrar['Nom']?></td><!--Nombre Questionario-->
-                        <td><?php echo $mostrar['Representant']?></td><!--Representante-->
-                        <td><?php echo $mostrar['Empresa']?></td><!--Empresa-->
-                        <td><?php echo $mostrar['Autor']?></td><!--Autor-->
-                        <td><?php echo $mostrar['Fecha']?></td><!--Fecha-->
-                        <td><button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['Id']?>" onclick="showModal()">Editar</button> <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                        <td id="nombre-cuestionario-1"><?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
+                        <td><?php echo $mostrar['autor_questionary']?></td><!--Representante-->
+                        <td><?php echo $mostrar['date_questionary']?></td><!--Autor-->
+                        <td>
+                          <button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['id_questionary']?>" onclick="showModal()">Editar</button>
+                          <button class="btn btn-danger btn-sm" id="<?php echo $mostrar['id_questionary'] ?>" onclick=''>Eliminar</button>
+                        </td>
                     </tr>
 
                     <?php 
@@ -159,26 +158,18 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="test" action="../actions/crear.php" method="POST">
+              <form id="test" action="../actions/crear_questionari.php" method="POST">
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
-                  <input type="text" class="form-control" name="Nombre-Cuestionario" id="Nombre-Cuestionario">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Representante:</label>
-                  <input type="text" class="form-control" name="Representante" id="Representante">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Empresa:</label>
-                  <input type="text" class="form-control" name="Empresa" id="Empresa">
+                  <input type="text" class="form-control" name="name_questionary" id="name_questionary">
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Autor:</label>
-                  <input type="text" class="form-control" name="Autor" id="Autor">
+                  <input type="text" class="form-control" name="autor_questionary" id="autor_questionary">
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Fecha:</label>
-                  <input type="date" class="form-control" name="Fecha" id="Fecha">
+                  <input type="date" class="form-control" name="date_questionary" id="date_questionary">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
