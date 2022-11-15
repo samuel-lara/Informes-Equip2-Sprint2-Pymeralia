@@ -1,6 +1,7 @@
 <?php 
 
 class Informe {
+    private $id;
     private $estat;
     private $data;
     private $resum;
@@ -11,6 +12,7 @@ class Informe {
   /**
    * __construct
    *
+   * @param mixed $id
    * @param  mixed $estat
    * @param  mixed $resum
    * @param  mixed $data
@@ -18,13 +20,26 @@ class Informe {
    * @param  mixed $intervencio
    * @return void
    */
-  //function __construct($estat, $resum, $data, $nivellRisc, $intervencio) {
-  //  $this->estat = $estat;
-  //  $this->resum = $resum;
-  //  $this->data = $data;
-  //  $this->nivellRisc = $nivellRisc;
-  //  $this->intervencio = $intervencio;
-  //}
+  function __construct() {
+    //obtengo un array con los parámetros enviados a la función
+		$params = func_get_args();
+		//saco el número de parámetros que estoy recibiendo
+		$num_params = func_num_args();
+		//cada constructor de un número dado de parámtros tendrá un nombre de función
+		//atendiendo al siguiente modelo __construct1() __construct2()...
+		$funcion_constructor ='__construct'.$num_params;
+		//compruebo si hay un constructor con ese número de parámetros
+		if (method_exists($this,$funcion_constructor)) {
+			//si existía esa función, la invoco, reenviando los parámetros que recibí en el constructor original
+			call_user_func_array(array($this,$funcion_constructor),$params);
+		}
+	}
+  
+	//ahora declaro una serie de métodos constructores que aceptan diversos números de parámetros
+	
+  function __construct1($id){
+    $this->id = $id;   
+  }
 
   /** GETTERS i SETTERS */  
   /**
@@ -148,10 +163,10 @@ class Informe {
    *
    * @return void
    */
-  public function deleteInforme($id){
+  public function deleteInforme(){
     include "../includes/config-connexio.php";
 
-    $sqlQuery = "UPDATE reports SET hidden = 1 WHERE id_report = $id";
+    $sqlQuery = "UPDATE reports SET hidden = 1 WHERE id_report = $this->id";
     $result = mysqli_query($conn, $sqlQuery);
 
     return $result;
@@ -165,8 +180,8 @@ class Informe {
    * @return void
    */
   public static function showInforme(){
-    include "../includes/config-connexio.php";
-
+     include "../includes/config-connexio.php";
+    
     $sqlQuery = "SELECT * FROM reports WHERE hidden = 0";
     $result = mysqli_query($conn, $sqlQuery);
     //var_dump($result);
