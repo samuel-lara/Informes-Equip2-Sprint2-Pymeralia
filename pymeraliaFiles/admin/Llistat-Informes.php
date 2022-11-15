@@ -1,9 +1,11 @@
 <?php
     include_once "../clases/informeclass.php";
-    $informe = new Informe();
+    //echo $_POST['id_eliminar'];
+    
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["id_eliminar"])){
-        $informe->deleteInforme($_POST['id_eliminar']);
+         $informe = new Informe($_POST['id_eliminar']);
+        $informe->deleteInforme();
         unset($_POST['id_eliminar']);
         header('Location: Llistat-Informes.php');
     }
@@ -132,7 +134,7 @@
                                     <!--Editar i Eliminar-->
                                 </th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody>
                         <?php 
                             ///*** */
