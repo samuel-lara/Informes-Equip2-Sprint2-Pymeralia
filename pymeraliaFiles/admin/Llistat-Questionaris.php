@@ -91,7 +91,7 @@
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal()">Crear Cuestionario</button>
+            <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal('#modalCrear')">Crear Cuestionario</button>
         </div>
 
         <div class="form-outline">
@@ -129,17 +129,28 @@
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="nombre-cuestionario-1"><?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
-                        <td><?php echo $mostrar['autor_questionary']?></td><!--Autor-->
-                        <td><?php echo $mostrar['date_questionary']?></td><!--Fecha-->
+                        <td id="name_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
+                        <td id="autor_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['autor_questionary']?></td><!--Autor-->
+                        <td id="date_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['date_questionary']?></td><!--Fecha-->
                         <td>
-                          <button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['id_questionary']?>" onclick="showModal()">Editar</button>
-                          <form action="../actions/borrar_questionari.php?id=<?php echo $mostrar['id_questionary'] ?>" method="POST">
-                            <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input-eliminar">
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                          </form>
+                          <div class="d-flex justify-content-center">
+                              <button class="btn btn-warning btn-sm mx-2" id="editar-cuestionari" onclick="showModal('#modalEditar-<?php echo $mostrar['id_questionary']?>')">Editar</button><!--botón Editar-->
+                      
+                            <form action="../actions/borrar_questionari.php?id=<?php echo $mostrar['id_questionary'] ?>" method="POST"><!--botón Eliminar-->
+                              <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input-eliminar">
+                              <button type="submit" class="btn btn-danger btn-sm mx-2">Eliminar</button>
+                            </form>
+
+                            <form action="" method="POST"><!--botón Ver Preguntas-->
+                              <button class="btn btn-light btn-sm mx-2">Ver Preguntas</button>
+                            </form>
+                          </div>
                         </td>
                     </tr>
+
+                      <?php include "../modals/modal_crear_questionari.php"?><!--Include Modal Crear Cuestionario-->
+                      <?php include "../modals/modal_editar_questionari.php"?><!--Include Modal Editar Cuestionario-->
+
                     <?php 
                     }
                     ?>
@@ -148,84 +159,9 @@
         </div>
     </div>
 
+    
+    
 
-
-
-    <!--Modal Crear Cuestionario-->
-    <div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Crear Cuestionario</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="test" action="../actions/crear_questionari.php" method="POST">
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
-                  <input type="text" class="form-control" name="name_questionary" id="name_questionary">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Autor:</label>
-                  <input type="text" class="form-control" name="autor_questionary" id="autor_questionary">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Fecha:</label>
-                  <input type="date" class="form-control" name="date_questionary" id="date_questionary">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-
-                  <!--Enviar el cuestionario solo cuando le doy click al botón-->
-                  <button class="btn btn-primary" type="submit">Guardar Cuestionario</button>
-              </div>  
-            </form>
-          </div>   
-        </div>
-      </div>
-    </div> 
-       
-    <!--
-    Modal Editar Cuestionario
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Editar Questionario</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Representante:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Empresa:</label>
-                    <input type="text" class="form-control" id="recipient-name">
-                  </div>
-                  <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Autor:</label>
-                    <input type="text" class="form-control" id="recipient-name">
-                  </div>
-                  <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Fecha:</label>
-                    <input type="text" class="form-control" id="recipient-name">
-                  </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Guardar Cuestionario</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
 
     <footer class="bg-black text-center text-lg-center mt-auto">
         <div class="text-center p-3">
@@ -281,7 +217,7 @@
 
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../scripts/modal-editar-questionari.js"></script>
+    <script src="../scripts/mostrar_modals_questionari.js"></script>
 </body>
 
 

@@ -103,6 +103,10 @@ class Questionari {
     $this -> respostes = $respostes;
   }
 
+
+
+
+
   /** CRUD Questionari */
   
   /**
@@ -119,6 +123,7 @@ class Questionari {
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
 
+    ///*** Condició que comprova si la variable que pasem per POST esta buida o plena
     if(isset($_POST['name_questionary']) != ""){
           
       ///*** Query que hace el Insert a la base de datos con algunos parámetros prestablecidos
