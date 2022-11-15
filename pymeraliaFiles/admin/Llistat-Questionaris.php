@@ -1,8 +1,5 @@
 <?php
     include_once "../clases/QuestionariClass.php";
-
-    //Instanciamos el Objeto Questionari
-    $questionari = new Questionari();
 ?>
 
 <!DOCTYPE html>
@@ -125,29 +122,34 @@
                 <!--Tabla que se autogenera con los campos de la base de datos-->
                 <tbody>
                     <?php 
-                      ///*** */
-                      $result = $questionari->showQuestionari("questionnaries");
+                      ///*** mostrem la llista de tots els questionaris cridant al métode estàtic showQuestionari de la clase Questionari */
+                      $result = Questionari::showQuestionari();
 
                       while($mostrar = mysqli_fetch_array($result)){
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
                         <td id="nombre-cuestionario-1"><?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
-                        <td><?php echo $mostrar['autor_questionary']?></td><!--Representante-->
-                        <td><?php echo $mostrar['date_questionary']?></td><!--Autor-->
+                        <td><?php echo $mostrar['autor_questionary']?></td><!--Autor-->
+                        <td><?php echo $mostrar['date_questionary']?></td><!--Fecha-->
                         <td>
                           <button class="btn btn-warning btn-sm" id="editar-cuestionari-<?php echo $mostrar['id_questionary']?>" onclick="showModal()">Editar</button>
-                          <button class="btn btn-danger btn-sm" id="<?php echo $mostrar['id_questionary'] ?>" onclick=''>Eliminar</button>
+                          <form action="../actions/borrar_questionari.php?id=<?php echo $mostrar['id_questionary'] ?>" method="POST">
+                            <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input-eliminar">
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                          </form>
                         </td>
                     </tr>
-
                     <?php 
-                        }
+                    }
                     ?>
                 </tbody>
             </table>
         </div>
     </div>
+
+
+
 
     <!--Modal Crear Cuestionario-->
     <div class="modal fade" id="modalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

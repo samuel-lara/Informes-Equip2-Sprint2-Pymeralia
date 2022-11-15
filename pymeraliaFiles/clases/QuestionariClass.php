@@ -3,13 +3,49 @@ class Questionari {
   private $estat;
   private $preguntes;
   private $respostes;
-  // Methods
-  /*function construct($preguntes, $respostes, $estat) {
-    $this->preguntes = $preguntes;
-    $this->respostes = $respostes;
-    $this->estat = $estat;
-  }*/
+  private $id;
+  private $nombre_cuestionario;
+  private $autor;
+  private $fecha;
+
+
+  // Contructors
+  function __construct()
+	{
+		//obtengo un array con los parámetros enviados a la función
+		$params = func_get_args();
+		//saco el número de parámetros que estoy recibiendo
+		$num_params = func_num_args();
+		//cada constructor de un número dado de parámtros tendrá un nombre de función
+		//atendiendo al siguiente modelo __construct1() __construct2()...
+		$funcion_constructor ='__construct'.$num_params;
+		//compruebo si hay un constructor con ese número de parámetros
+		if (method_exists($this,$funcion_constructor)) {
+			//si existía esa función, la invoco, reenviando los parámetros que recibí en el constructor original
+			call_user_func_array(array($this,$funcion_constructor),$params);
+		}
+	}
   
+	//ahora declaro una serie de métodos constructores que aceptan diversos números de parámetros
+
+  function __construct1($id)
+	{
+		$this->id = $id;
+	}
+
+
+    
+  function __construct3($nombre_cuestionario, $autor, $fecha)
+	{
+		$this->nombre_cuestionario = $nombre_cuestionario;
+    $this->autor = $autor;
+    $this->fecha = $fecha;
+	}
+  
+
+
+
+  /** Methods */
   /**
    * getEstat
    *
@@ -79,14 +115,14 @@ class Questionari {
    * @param  mixed $fecha_cuestionario
    * return void
    */
-  public function addQuestionari($nombre_cuestionario, $autor_cuestionario, $fecha_cuestionario){
+  public function addQuestionari(){
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
 
     if(isset($_POST['name_questionary']) != ""){
           
       ///*** Query que hace el Insert a la base de datos con algunos parámetros prestablecidos
-      $query = "INSERT INTO `questionnaries`(`name_questionary`, `autor_questionary`, `date_questionary`, `hidden`, `id_user`) VALUES ('$nombre_cuestionario','$autor_cuestionario','$fecha_cuestionario', 0, NULL)";
+      $query = "INSERT INTO `questionnaries`(`name_questionary`, `autor_questionary`, `date_questionary`, `hidden`, `id_user`) VALUES ('$this->nombre_cuestionario','$this->autor','$this->fecha', 0, NULL)";
 
       ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
       if($conn->query($query) != ""){
@@ -100,6 +136,9 @@ class Questionari {
     }
   }
   
+
+
+
   private function editQuestionari(){
   }
   
@@ -112,25 +151,28 @@ class Questionari {
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
 
-    $query = "UPDATE questionnaires
-    SET hidden = 1
-    WHERE id_questionart = $id_cuestionario";
+    ///*** query
+    $query = "UPDATE `questionnaries` SET `hidden`= 1 WHERE `id_questionary`= $this->id";
 
-    //$result = mysqli_query($conn, $sql);
-
+    
     ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
-    if($conn->query($query) != ""){
+    if($conn->query($query)){
+      ///***Include del archivo que permite desconectarnos a la base de datos
+      include "../includes/config-desconnexio.php";
       header("Location: ../admin/Llistat-Questionaris.php");
     }else{
+      include "../includes/config-desconnexio.php";
       header("Location: ../admin/Llistat-Questionaris.php");
     }
 
-    ///***Include del archivo que permite desconectarnos a la base de datos
     include "../includes/config-desconnexio.php";
   }
 
 
   
+
+
+
   /**
    * Consulta que fa un SELECT a la base de dades per a mostrar els camps de la taula seleccionada
    * 
@@ -139,18 +181,20 @@ class Questionari {
    * @param mixed $tabla
    * return void
    */
-  public function showQuestionari($tabla){
+  public static function showQuestionari(){
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
 
     ///*** Consulta que recoge los campos filtrandolos por un campo para poder mostrar o no
-    $sql = "SELECT * FROM $tabla WHERE hidden = 0";
+    $sql = "SELECT * FROM `questionnaries` WHERE hidden = 0";
     $result = mysqli_query($conn, $sql);
+
+    
 
     return $result;
 
     ///***Include del archivo que permite desconectarnos a la base de datos
-    include "../includes/config-desconnexio.php";
+    //include "../includes/config-desconnexio.php";
   }
 }
 
