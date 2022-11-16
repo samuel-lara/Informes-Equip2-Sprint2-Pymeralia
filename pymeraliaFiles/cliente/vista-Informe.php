@@ -1,3 +1,6 @@
+<?php
+    include_once "../clases/Informesprova.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -86,62 +89,41 @@
         <!--Header Menu-->
 
     </header>
-    <div class="container mt-3">
-        <h2>Mis informes</h2>
+    
+    <div class="container overflow-hidden text-center py-3" id="cuerpo">
+        <div class="container overflow-hidden text-center py-3">
+            <h2>Lista informes</h2>
+        </div>
+
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
-                        <th scope="col">Nombre Cuestionario</th>
-                        <th scope="col">Representante</th>
-                        <th scope="col">Empresa</th>
-                        <th scope="col">Autor</th>
+                        <th scope="col">Nombre informe</th>
                         <th scope="col">Fecha</th>
                     </tr>
-                </thead>
+                </thead> 
                 <tbody>
+                <?php 
+                    ///*** */
+                    $informe = new Informe(3);
+                    $result = $informe->mostrarInformesUsuari();
+                    while($mostrar = mysqli_fetch_array($result)){
+                    ?>
                     <tr>
-                        <td>Questionario 1</td>
-                        <!--Nombre Questionario-->
-                        <td>Toni Morant</td>
-                        <!--Representante-->
-                        <td>Institut Montsià</td>
-                        <!--Empresa-->
-                        <td>Samuel Lara</td>
-                        <!--Autor-->
-                        <td>22/11/2022</td>
-                        <!--Fecha-->
-                        <td><button class="btn bg-primary btn-sm">Ver informe</button>
-                        <!--Editar i Eliminar-->
+                        <td id="nombre-cuestionario-"><?php echo $mostrar['name_report']?></td><!--Nombre Questionario-->
+                        <td><?php echo $mostrar['date_report']?></td><!--Fecha-->
+                        <td>
+                        <form action= "" method="post">
+                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
+                            <input class="btn btn-danger btn-sm" type="submit" value="Descarregar">
+                        </form>
+                        </td><!--Editar i Eliminar-->
                     </tr>
-                    <tr>
-                        <td>Questionario 2</td>
-                        <!--Nombre Questionario-->
-                        <td>Xavi Fibla</td>
-                        <!--Representante-->
-                        <td>Fibla S.L.</td>
-                        <!--Empresa-->
-                        <td>Ivan Sorribes</td>
-                        <!--Autor-->
-                        <td>14/10/2022</td>
-                        <!--Fecha-->
-                        <td><button class="btn bg-primary btn-sm">Ver informe</button>
-                        <!--Editar i Eliminar-->
-                    </tr>
-                    <tr>
-                        <td>Questionario 3</td>
-                        <!--Nombre Questionario-->
-                        <td>Joan Iglesias</td>
-                        <!--Representante-->
-                        <td>Empatica</td>
-                        <!--Empresa-->
-                        <td>Yasir Hayati</td>
-                        <!--Autor-->
-                        <td>09/09/2022</td>
-                        <!--Fecha-->
-                        <td><button class="btn bg-primary btn-sm">Ver informe</button></td>
-                        <!--Editar i Eliminar-->
-                    </tr>
+
+                    <?php 
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
