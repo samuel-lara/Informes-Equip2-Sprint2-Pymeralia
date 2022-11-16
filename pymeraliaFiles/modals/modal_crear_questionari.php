@@ -23,7 +23,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                   <!--Enviar el cuestionario solo cuando le doy click al botón-->
-                  <button class="btn btn-primary" type="submit">Guardar Cuestionario</button>
+                  <button class="btn btn-primary" type="submit" id="boton_guardar_cuestionario" onclick="validarFormularioCrear()">Guardar Cuestionario</button>
               </div>  
             </form>
           </div>   

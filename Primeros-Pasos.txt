@@ -1,1 +1,1 @@
-1. npm install
+1. Ejecutar npm install tan solo empezar el proyecto por primera vez.

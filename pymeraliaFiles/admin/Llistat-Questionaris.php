@@ -94,6 +94,8 @@
             <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal('#modalCrear')">Crear Cuestionario</button>
         </div>
 
+        <?php include "../modals/modal_crear_questionari.php"?><!--Include Modal Crear Cuestionario-->
+
         <div class="form-outline">
           <input type="search" id="form1" class="form-control" placeholder="Buscar"/>
         </div>
@@ -149,7 +151,6 @@
                         </td>
                     </tr>
 
-                      <?php include "../modals/modal_crear_questionari.php"?><!--Include Modal Crear Cuestionario-->
                       <?php include "../modals/modal_editar_questionari.php"?><!--Include Modal Editar Cuestionario-->
 
                     <?php 
@@ -219,6 +220,7 @@
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../scripts/mostrar_modals_questionari.js"></script>
+    <script src="../scripts/validar_crear_formulario.js"></script>
 </body>
 
 

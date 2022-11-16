@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
             <form id="test" action="../actions/editar_questionari.php" method="POST">
-                  <input type="number" value="<?php echo $mostrar['id_questionary']?>" name="id_questionary">
+                  <input type="hidden" value="<?php echo $mostrar['id_questionary']?>" name="id_questionary">
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
                   <input type="text" class="form-control" name="name_questionary" id="name_questionary_editar" value="<?php echo $mostrar['name_questionary']?>">
