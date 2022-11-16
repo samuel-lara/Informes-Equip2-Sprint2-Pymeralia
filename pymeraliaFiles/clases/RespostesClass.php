@@ -53,19 +53,31 @@ class Respostes {
 
   //CRUD
 
-  private function addResposta(){
+  public function addResposta(){
+    include './connect.php';
 
+    $sql = "INSERT INTO `answers`(`Name_answer`, `Description_answer`, `hidden`, `Id_question) VALUES (‘Si','La xarxa té una contrasenya segura', 0, 1);";
+
+    if ($conn-> query($sql) == TRUE){
+      echo "S'ha afegit";
+    } else {
+      echo "Error:. " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
+
+    $result = mysqli_query($conn, $sql);
   }
 
-  private function editResposta(){
-
-  }
+    private function editResposta(){
+      include './connect.php';
+      
+    }
 
   private function deleteResposta(){
 
   }
 
   public function showResposta(){
-
+  
   }
 }

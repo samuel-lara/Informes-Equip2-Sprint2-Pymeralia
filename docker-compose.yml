@@ -31,6 +31,6 @@ services:
     phpmyadmin:
         image: phpmyadmin
         links: 
-            - 'mariadb:db'
+            - 'mariadb:db'  
         ports:
             - 8084:80

@@ -1,7 +1,3 @@
-<?php
-    include_once "../clases/QuestionariClass.php";
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Cuestionarios</title>
+    <title>Lista Respuestas</title>
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -17,7 +13,6 @@
     <link href="../css/fontawesome.min.css" rel="stylesheet">
     <link href="../css/brands.min.css" rel="stylesheet">
     <link href="../css/solid.min.css" rel="stylesheet">
-    <script src="../scripts/checkbox.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 
@@ -55,7 +50,6 @@
                                     <li><a class="dropdown-item" href="../cliente/index.html"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
                                 </ul>
                             </li>
-                          </ul>
                     </div>
                 </div>
             </div>
@@ -74,7 +68,7 @@
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-house"></i>Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
+                                    class="fa-solid fa-clipboard"></i>Questionarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-book"></i>Informes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
@@ -91,7 +85,7 @@
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal('#modalCrear')">Crear Cuestionario</button>
+            <button class="btn btn-primary btn-sm" id="boton-crear-questionario">Crear Resposta</button>
         </div>
 
         <div class="form-outline">
@@ -105,63 +99,53 @@
 
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
         <div class="container overflow-hidden text-center py-3">
-            <h2>Lista Cuestionarios</h2>
+            <h2>Lista Respuestas</h2>
         </div>
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
-                        <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
-                        <th scope="col">Nombre Cuestionario</th>
+                        <th scope="col"><input type="checkbox"></th>
+                        <th scope="col">Nombre Respuestas</th>
+                        <th scope="col">Representante</th>
+                        <th scope="col">Empresa</th>
                         <th scope="col">Autor</th>
                         <th scope="col">Fecha</th>
                         <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button><!--Editar i Eliminar--></th>
                     </tr>
                 </thead>
-
-                <!--Tabla que se autogenera con los campos de la base de datos-->
                 <tbody>
-                    <?php 
-                      ///*** mostrem la llista de tots els questionaris cridant al métode estàtic showQuestionari de la clase Questionari */
-                      $result = Questionari::showQuestionari();
-
-                      while($mostrar = mysqli_fetch_array($result)){
-                    ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="name_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
-                        <td id="autor_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['autor_questionary']?></td><!--Autor-->
-                        <td id="date_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['date_questionary']?></td><!--Fecha-->
-                        <td>
-                          <div class="d-flex justify-content-center">
-                            <!--El botón editar llama a la funcion que abre el modal y como parámetros le pasamos una id que va variando dependiendo de la fila que recuperamos mediante php -->
-                              <button class="btn btn-warning btn-sm mx-2" id="editar-cuestionari" onclick="showModal('#modalEditar-<?php echo $mostrar['id_questionary']?>')">Editar</button><!--botón Editar-->
-                      
-                            <form action="../actions/borrar_questionari.php?id=<?php echo $mostrar['id_questionary'] ?>" method="POST"><!--botón Eliminar-->
-                              <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input-eliminar">
-                              <button type="submit" class="btn btn-danger btn-sm mx-2">Eliminar</button>
-                            </form>
-
-                            <form action="" method="POST"><!--botón Ver Preguntas-->
-                              <button class="btn btn-light btn-sm mx-2">Ver Preguntas</button>
-                            </form>
-                          </div>
-                        </td>
+                        <td>Respuesta 1</td><!--Nombre Questionario-->
+                        <td>Toni Morant</td><!--Representante-->
+                        <td>Institut Montsià</td><!--Empresa-->
+                        <td>Samuel Lara</td><!--Autor-->
+                        <td>22/11/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
                     </tr>
-
-                      <?php include "../modals/modal_crear_questionari.php"?><!--Include Modal Crear Cuestionario-->
-                      <?php include "../modals/modal_editar_questionari.php"?><!--Include Modal Editar Cuestionario-->
-
-                    <?php 
-                    }
-                    ?>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Respuesta 2</td><!--Nombre Questionario-->
+                        <td>Xavi Fibla</td><!--Representante-->
+                        <td>Fibla S.L.</td><!--Empresa-->
+                        <td>Ivan Sorribes</td><!--Autor-->
+                        <td>14/10/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                    </tr>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td>Respuesta 3</td><!--Nombre Questionario-->
+                        <td>Joan Iglesias</td><!--Representante-->
+                        <td>Empatica</td><!--Empresa-->
+                        <td>Yasir Hayati</td><!--Autor-->
+                        <td>09/09/2022</td><!--Fecha-->
+                        <td><button class="btn btn-warning btn-sm">Editar</button>  <button class="btn btn-danger btn-sm">Eliminar</button></td><!--Editar i Eliminar-->
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
-    
-    
 
 
     <footer class="bg-black text-center text-lg-center mt-auto">
@@ -215,11 +199,6 @@
             </div>
         </div>
     </footer>
-
-
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../scripts/mostrar_modals_questionari.js"></script>
 </body>
-
 
 </html>
