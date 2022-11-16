@@ -146,10 +146,16 @@
                                 <td id="nombre-cuestionario-"><?php echo $mostrar['name_report']?></td><!--Nombre Questionario-->
                                 <td><?php echo $mostrar['date_report']?></td><!--Fecha-->
                                 <td>
-                                <form action= "<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                                    <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
-                                    <input class="btn btn-danger btn-sm" type="submit" value="Eliminar">
-                                </form>
+                                    <div class="d-flex justify-content-center">
+                                        <form action= "<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
+                                            <input class="btn btn-danger btn-sm" type="submit" value="Eliminar">
+                                        </form>
+                                        <form action= "../actions/descargar_pdf.php?id=<?php echo $mostrar['id_report']?>" method="post">
+                                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
+                                            <input class="btn btn-primary btn-sm ms-1" type="submit" value="Descarregar">
+                                        </form>
+                                    </div>
                                 </td><!--Editar i Eliminar-->
                             </tr>
 
