@@ -1,4 +1,5 @@
 node_modules
 pymeraliaDB
 database
-pymeraliaFiles/TCPDF
+pymeraliaFiles/fpdf185
+pymeraliaFiles/node_modules
