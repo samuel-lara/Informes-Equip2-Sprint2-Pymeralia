@@ -41,6 +41,14 @@ class Questionari {
     $this->autor = $autor;
     $this->fecha = $fecha;
 	}
+
+  function __construct4($id, $nombre_cuestionario, $autor, $fecha)
+	{
+    $this->id = $id;
+		$this->nombre_cuestionario = $nombre_cuestionario;
+    $this->autor = $autor;
+    $this->fecha = $fecha;
+	}
   
 
 
@@ -143,8 +151,33 @@ class Questionari {
   
 
 
+  
+  /**
+   * editQuestionari
+   * 
+   * Edita los datos del cuestionario que se escoja
+   *
+   * return void
+   */
+  public function editQuestionari(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
 
-  private function editQuestionari(){
+    ///*** query que genera la consulta y actualiza el campo en la base de datos
+    $queryUpdate = "UPDATE `questionnaries` SET `name_questionary`='$this->nombre_cuestionario', `autor_questionary`='$this->autor', `date_questionary`='$this->fecha' WHERE `id_questionary`=$this->id";
+
+    ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
+    if($conn->query($queryUpdate)){
+      ///***Include del archivo que permite desconectarnos a la base de datos
+      include "../includes/config-desconnexio.php";
+      header("Location: ../admin/Llistat-Questionaris.php");
+    }else{
+      include "../includes/config-desconnexio.php";
+      header("Location: ../admin/Llistat-Questionaris.php");
+    }
+
+    //Desconexió de la base de dades
+    include "../includes/config-desconnexio.php";
   }
   
 
