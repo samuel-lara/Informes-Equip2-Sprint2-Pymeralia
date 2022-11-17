@@ -73,10 +73,16 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-house"></i>Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Questionaris.php"><i
                                     class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Informes.php"><i
                                     class="fa-solid fa-book"></i>Informes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Preguntes.html"><i
+                                    class="fa-solid fa-question"></i>Listado Preguntas</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i
+                                    class="fa-solid fa-check-circle"></i>Listado Respuestas</a>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-graduation-cap"></i>Formación</a>
                         </li>
@@ -91,31 +97,25 @@
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-questionario" onclick="showModal('#modalCrear')">Crear Cuestionario</button>
+            <button class="btn btn-primary btn-sm" id="boton_asignar_preguntas_questionario" onclick="">Asignar Preguntas al Cuestionario</button>
         </div>
 
-        <div class="form-outline">
-          <input type="search" id="form1" class="form-control" placeholder="Buscar"/>
-        </div>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-search"></i>
-        </button>
+        
       </div>
     </div><!--Barra Buscar-->
 
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
         <div class="container overflow-hidden text-center py-3">
-            <h2>Lista Cuestionarios</h2>
+            <h2>Preguntas del //Aqui va el nombre del cuestionario que recuperamos//</h2>
         </div>
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
                         <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
-                        <th scope="col">Nombre Cuestionario</th>
-                        <th scope="col">Autor</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button><!--Editar i Eliminar--></th>
+                        <th scope="col">Nombre Pregunta</th>
+                        <th scope="col">Descripción Pregunta</th>
+                        <th scope="col"><button class="btn btn-danger btn-sm">Desasignar toda la selección</button><!--Editar i Eliminar--></th>
                     </tr>
                 </thead>
 
@@ -131,20 +131,15 @@
                         <th scope="row"><input type="checkbox"></th>
                         <td id="name_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
                         <td id="autor_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['autor_questionary']?></td><!--Autor-->
-                        <td id="date_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['date_questionary']?></td><!--Fecha-->
+                        
                         <td>
                           <div class="d-flex justify-content-center">
-                            <!--El botón editar llama a la funcion que abre el modal y como parámetros le pasamos una id que va variando dependiendo de la fila que recuperamos mediante php -->
-                              <button class="btn btn-warning btn-sm mx-2" id="editar-cuestionari" onclick="showModal('#modalEditar-<?php echo $mostrar['id_questionary']?>')">Editar</button><!--botón Editar-->
-                      
+                        
                             <form action="../actions/borrar_questionari.php?id=<?php echo $mostrar['id_questionary'] ?>" method="POST"><!--botón Eliminar-->
                               <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input-eliminar">
-                              <button type="submit" class="btn btn-danger btn-sm mx-2">Eliminar</button>
+                              <button type="submit" class="btn btn-danger btn-sm mx-2">Desasignar</button>
                             </form>
 
-                            <form action="" method="POST"><!--botón Ver Preguntas-->
-                              <button class="btn btn-light btn-sm mx-2">Ver Preguntas</button>
-                            </form>
                           </div>
                         </td>
                     </tr>
