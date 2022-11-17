@@ -151,7 +151,7 @@
                             </form>
 
                             <form action="" method="POST"><!--botón Ver Preguntas-->
-                              <button class="btn btn-light btn-sm mx-2"><a id="enlace_pregunta_cuestionario" style="text-decoration: none; color: black;" href="Llistat-Preguntes-Questionari.php?id=<?php echo $mostrar['id_questionary']?>&name=<?php echo $mostrar['name_questionary']?>">Ver Preguntas</a></button>
+                              <button class="btn btn-light btn-sm mx-2"><a id="enlace_pregunta_cuestionario" style="text-decoration: none; color: black;" href="Llistat-Preguntes-Questionari.php?id=<?php echo $mostrar['id_questionary']?>">Ver Preguntas</a></button>
                             </form>
                           </div>
                         </td>

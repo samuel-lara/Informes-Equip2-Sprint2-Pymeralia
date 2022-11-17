@@ -2,14 +2,17 @@
     include_once "../clases/QuestionariClass.php";
 
     //Comprobamos si recibimos los datos por método GET desde el archivo php del que mandamos llamar
-    if(isset($_GET["id"]) && isset($_GET["name"]))
+    if(isset($_GET["id"]))
     {
         $id_cuestionario = $_GET["id"];
-        $nombre_cuestionario = $_GET["name"];
     }
 
     //Intanciamos un objeto para trabajar con el al que le pasamos un parámetro
     $cuestionarioPreguntas = new Questionari($id_cuestionario);
+
+    //llamamos al método estatico showQuestionari para poder acceder a los campos de la tabla questionary
+    $resultadoCuestionario = Questionari::showQuestionari();
+    $mostrarCuestionario = mysqli_fetch_array($resultadoCuestionario);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +22,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Preguntas-<?php echo $nombre_cuestionario?></title><!--se modifica el title dependiendo de cada cuestionario-->
+    <title>Lista Preguntas-<?php echo $mostrarCuestionario['name_questionary']?></title><!--se modifica el title dependiendo de cada cuestionario-->
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -116,7 +119,7 @@
 
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
         <div class="container overflow-hidden text-center py-3">
-            <h2>Preguntas Asignadas - <?php echo $nombre_cuestionario?></h2>
+            <h2>Preguntas Asignadas - <?php echo $mostrarCuestionario['name_questionary']?></h2>
         </div>
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
@@ -145,7 +148,7 @@
                         <td>
                           <div class="d-flex justify-content-center">
                         
-                            <form action="../actions/desasignar_pregunta.php?name_questionary=<?php echo $nombre_cuestionario ?>&id_question=<?php echo $mostrar['id_question'] ?>" method="POST">
+                            <form action="../actions/desasignar_pregunta.php?id_questionary=<?php echo $mostrarCuestionario['id_questionary']?>&id_question=<?php echo $mostrar['id_question'] ?>" method="POST">
                               <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input_desasignar">
                               <button type="submit" class="btn btn-danger btn-sm mx-2">Desasignar</button>
                             </form><!--botón Desasignar-->

@@ -4,6 +4,7 @@ class Questionari {
   private $preguntes;
   private $respostes;
   private $id;
+  private $idQuestion;
   private $nombre_cuestionario;
   private $autor;
   private $fecha;
@@ -33,10 +34,10 @@ class Questionari {
 		$this->id = $id;
 	}
 
-  function __construct2($id, $nombre_cuestionario)
+  function __construct2($id, $idQuestion)
 	{
 		$this->id = $id;
-    $this->nombre_cuestionario = $nombre_cuestionario;
+    $this->idQuestion = $idQuestion;
 	}
 
 
@@ -275,23 +276,33 @@ class Questionari {
     include "../includes/config-desconnexio.php";
   }
 
-
+  
+  /**
+   * FALTA ARREGLAR!!
+   * 
+   * unassignQuestion
+   * 
+   *Método que quita la asignacion de una pregunta a un cuestionario poniendola en NULL y asi poder asignarla en otro cuestionario
+   * 
+   * return void
+   */
   public function unassignQuestion(){
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
 
     ///*** query
-    $query = "UPDATE `questions` SET `id_questionary`= NULL WHERE `id_question`= $this->id";
+    $query = "UPDATE `questions` SET `id_questionary`= NULL WHERE `id_question`= $this->idQuestion";
 
-    
+
     ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
     if($conn->query($query)){
       ///***Include del archivo que permite desconectarnos a la base de datos
       include "../includes/config-desconnexio.php";
-      header("Location: ../admin/Llistat-Preguntes-Questionaris.php?id=$this->id&name=$this->nombre_cuestionario");
+      //Los header location se les pasa la variable id para poder redirigir a la página ya que se pasa por get y hay que coger la URL
+      header("Location: ../admin/Llistat-Preguntes-Questionari.php?id=$this->idQuestion");
     }else{
       include "../includes/config-desconnexio.php";
-      header("Location: ../admin/Llistat-Questionaris.php");
+      header("Location: ../admin/Llistat-Preguntes-Questionari.php?id=$this->idQuestion");
     }
 
     include "../includes/config-desconnexio.php";
