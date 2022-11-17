@@ -33,6 +33,12 @@ class Questionari {
 		$this->id = $id;
 	}
 
+  function __construct2($id, $nombre_cuestionario)
+	{
+		$this->id = $id;
+    $this->nombre_cuestionario = $nombre_cuestionario;
+	}
+
 
     
   function __construct3($nombre_cuestionario, $autor, $fecha)
@@ -184,7 +190,15 @@ class Questionari {
 
 
 
-
+  
+  /**
+   * deleteQuestionari
+   * 
+   * Cambia el campo hidden de 0 a 1 para ocultar el registro correspondiente simulando que se ha eliminado,
+   * pero tan solo se ha ocultado.
+   *
+   * return void
+   */
   public function deleteQuestionari(){
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
@@ -232,8 +246,57 @@ class Questionari {
     return $result;
 
     ///***Include del archivo que permite desconectarnos a la base de datos
-    //include "../includes/config-desconnexio.php";
+    include "../includes/config-desconnexio.php";
   }
+
+
+  
+
+  /**
+   * showQuestionariPreguntes
+   *
+   * Muestra todas las preguntas asignadas a un cuestionario
+   * 
+   * return void
+   */
+  public function showQuestionariPreguntes(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
+
+    ///*** Consulta que recoge los campos filtrandolos por dos campos para poder mostrar o no
+    $sql = "SELECT * FROM `questions` WHERE `id_questionary` = $this->id AND hidden = 0";
+    $resultado = mysqli_query($conn, $sql);
+
+    
+
+    return $resultado;
+
+    ///***Include del archivo que permite desconectarnos a la base de datos
+    include "../includes/config-desconnexio.php";
+  }
+
+
+  public function unassignQuestion(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
+
+    ///*** query
+    $query = "UPDATE `questions` SET `id_questionary`= NULL WHERE `id_question`= $this->id";
+
+    
+    ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
+    if($conn->query($query)){
+      ///***Include del archivo que permite desconectarnos a la base de datos
+      include "../includes/config-desconnexio.php";
+      header("Location: ../admin/Llistat-Preguntes-Questionaris.php?id=$this->id&name=$this->nombre_cuestionario");
+    }else{
+      include "../includes/config-desconnexio.php";
+      header("Location: ../admin/Llistat-Questionaris.php");
+    }
+
+    include "../includes/config-desconnexio.php";
+  }
+  
 }
 
 ?>

@@ -1,5 +1,15 @@
 <?php
     include_once "../clases/QuestionariClass.php";
+
+    //Comprobamos si recibimos los datos por método GET desde el archivo php del que mandamos llamar
+    if(isset($_GET["id"]) && isset($_GET["name"]))
+    {
+        $id_cuestionario = $_GET["id"];
+        $nombre_cuestionario = $_GET["name"];
+    }
+
+    //Intanciamos un objeto para trabajar con el al que le pasamos un parámetro
+    $cuestionarioPreguntas = new Questionari($id_cuestionario);
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +19,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Cuestionarios</title>
+    <title>Lista Preguntas-<?php echo $nombre_cuestionario?></title><!--se modifica el title dependiendo de cada cuestionario-->
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -77,10 +87,10 @@
                                     class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="Llistat-Informes.php"><i
                                     class="fa-solid fa-book"></i>Informes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Llistat-Preguntes.html"><i
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Preguntes.php"><i
                                     class="fa-solid fa-question"></i>Listado Preguntas</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Respostes.php"><i
                                     class="fa-solid fa-check-circle"></i>Listado Respuestas</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
@@ -102,11 +112,11 @@
 
         
       </div>
-    </div><!--Barra Buscar-->
+    </div><!--Asignar Preguntas-->
 
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
         <div class="container overflow-hidden text-center py-3">
-            <h2>Preguntas del //Aqui va el nombre del cuestionario que recuperamos//</h2>
+            <h2>Preguntas Asignadas - <?php echo $nombre_cuestionario?></h2>
         </div>
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
@@ -115,37 +125,34 @@
                         <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
                         <th scope="col">Nombre Pregunta</th>
                         <th scope="col">Descripción Pregunta</th>
-                        <th scope="col"><button class="btn btn-danger btn-sm">Desasignar toda la selección</button><!--Editar i Eliminar--></th>
+                        <th scope="col"><button class="btn btn-danger btn-sm">Desasignar toda la selección</button></th><!--Desasignar toda la Selección-->
                     </tr>
                 </thead>
 
                 <!--Tabla que se autogenera con los campos de la base de datos-->
                 <tbody>
                     <?php 
-                      ///*** mostrem la llista de tots els questionaris cridant al métode estàtic showQuestionari de la clase Questionari */
-                      $result = Questionari::showQuestionari();
+                      ///*** Mostramos la lista de todas las preguntas que corresponden al cuestionario usando el método sobre el objeto creado */
+                      $resultado = $cuestionarioPreguntas->showQuestionariPreguntes();
 
-                      while($mostrar = mysqli_fetch_array($result)){
+                      while($mostrar = mysqli_fetch_array($resultado)){
                     ?>
                     <tr>
                         <th scope="row"><input type="checkbox"></th>
-                        <td id="name_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['name_questionary']?></td><!--Nombre Questionario-->
-                        <td id="autor_questionary_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['autor_questionary']?></td><!--Autor-->
+                        <td id="name_question_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['name_question']?></td><!--Nombre Pregunta-->
+                        <td id="autor_question_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['description_question']?></td><!--Descripción/Cuerpo pregunta-->
                         
                         <td>
                           <div class="d-flex justify-content-center">
                         
-                            <form action="../actions/borrar_questionari.php?id=<?php echo $mostrar['id_questionary'] ?>" method="POST"><!--botón Eliminar-->
-                              <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input-eliminar">
+                            <form action="../actions/desasignar_pregunta.php?name_questionary=<?php echo $nombre_cuestionario ?>&id_question=<?php echo $mostrar['id_question'] ?>" method="POST">
+                              <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input_desasignar">
                               <button type="submit" class="btn btn-danger btn-sm mx-2">Desasignar</button>
-                            </form>
+                            </form><!--botón Desasignar-->
 
                           </div>
                         </td>
                     </tr>
-
-                      <?php include "../modals/modal_crear_questionari.php"?><!--Include Modal Crear Cuestionario-->
-                      <?php include "../modals/modal_editar_questionari.php"?><!--Include Modal Editar Cuestionario-->
 
                     <?php 
                     }
