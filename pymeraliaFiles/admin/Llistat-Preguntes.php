@@ -140,10 +140,6 @@
                               <input type="hidden" value="<?php $mostrar['id_question'] ?>" name="input-eliminar">
                               <button type="submit" class="btn btn-danger btn-sm mx-2">Eliminar</button>
                             </form>
-
-                            <form action="" method="POST"><!--botón Ver Preguntas-->
-                              <button class="btn btn-light btn-sm mx-2">Ver Preguntas</button>
-                            </form>
                           </div>
                         </td>
                     </tr>
