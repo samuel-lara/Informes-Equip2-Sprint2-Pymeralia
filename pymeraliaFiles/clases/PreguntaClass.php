@@ -84,7 +84,25 @@ class Pregunta {
   
 
    
-  private function editPregunta(){
+  public function editPregunta(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
+
+    ///*** query que genera la consulta y actualiza el campo en la base de datos
+    $queryUpdate = "UPDATE `question` SET `name_question`='$this->nombre_pregunta', `description_question`='$this->descripcion_pregunta' WHERE `id_question`=$this->id";
+
+    ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
+    if($conn->query($queryUpdate)){
+      ///***Include del archivo que permite desconectarnos a la base de datos
+      include "../includes/config-desconnexio.php";
+      header("Location: ../admin/Llistat-Preguntes.php");
+    }else{
+      include "../includes/config-desconnexio.php";
+      header("Location: ../admin/Llistat-Preguntes.php");
+    }
+
+    //Desconexió de la base de dades
+    include "../includes/config-desconnexio.php";
 
   }
   
