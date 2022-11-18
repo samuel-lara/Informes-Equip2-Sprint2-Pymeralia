@@ -8,13 +8,13 @@
             </div>
             <div class="modal-body">
               <!--al formulario le ponemos un preventDefault en el evento para evitar que se envie por defecto-->
-              <form id="form_modal_crear" onsubmit="event.preventDefault();" action="../actions/crear_questionari.php" method="POST">
+              <form id="form_modal_crear"  action="../actions/crear_questionari.php" onsubmit="event.preventDefault();" method="POST">
 
-                <div class="alert alert-danger" style="display:none;" role="alert" id="alerta_error_modal_crear">
+                <div class="alert alert-danger" style="display:none;" role="alert" id="alerta_error_modal">
                   Error al rellenar los campos
                 </div>
 
-                <div class="alert alert-success" style="display:none;" role="alert" id="alerta_validado_modal_crear">
+                <div class="alert alert-success" style="display:none;" role="alert" id="alerta_validado_modal">
                   Cuestionario creado correctamente
                 </div>
 

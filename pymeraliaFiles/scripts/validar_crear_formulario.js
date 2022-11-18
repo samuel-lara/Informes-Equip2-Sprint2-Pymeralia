@@ -4,8 +4,6 @@
 ** Tan solo con una función serviria pasando parámetros y no en este caso que hay dos
 */
 
-
-
 function validarFormularioCrear(){
     //Guardamos los elementos HTML que queremos utilizar en variables
     let nombreCuestionarioCrear = document.getElementById('name_questionary_crear').value;
@@ -20,7 +18,7 @@ function validarFormularioCrear(){
         document.getElementById('alerta_error_modal').setAttribute("style", "display:none;");
 
         //Si la introducción de datos es correcta entonces se visualiza una alerta correcta de validación
-        $('#alerta_validado_modal').fadeIn("slow");
+        $('#alerta_validado_modal_crear').fadeIn("slow");
 
         //Para poder visualizar la alerta de introdución satisfactoria hacemos que redirija a la página al cabo de 1 segundo
         setTimeout(() => {
@@ -32,6 +30,7 @@ function validarFormularioCrear(){
         //Si el formulario contiene algun campo incorrecto muestra un mensaje en el modal de error utilizando
         //el método fadeIn de jQuery para crear una animación
         $('#alerta_error_modal').fadeIn("slow");
+        console.log("Hola")
     }
 }
 
