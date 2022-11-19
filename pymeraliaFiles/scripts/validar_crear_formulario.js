@@ -18,7 +18,7 @@ function validarFormularioCrear(){
         document.getElementById('alerta_error_modal').setAttribute("style", "display:none;");
 
         //Si la introducción de datos es correcta entonces se visualiza una alerta correcta de validación
-        $('#alerta_validado_modal_crear').fadeIn("slow");
+        $('#alerta_validado_modal').fadeIn("slow");
 
         //Para poder visualizar la alerta de introdución satisfactoria hacemos que redirija a la página al cabo de 1 segundo
         setTimeout(() => {
