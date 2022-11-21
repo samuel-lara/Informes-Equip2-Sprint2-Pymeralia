@@ -75,7 +75,7 @@
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="Vista-Questionari.php"><i
-                                    class="fa-solid fa-clipboard"></i>Questionarios</a></li>
+                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="vista-informe.php"><i class="fa-solid fa-book"></i>Informes</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
