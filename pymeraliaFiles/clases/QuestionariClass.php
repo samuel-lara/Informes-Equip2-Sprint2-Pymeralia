@@ -1,9 +1,11 @@
 <?php 
 class Questionari {
+  private $id_user;
   private $estat;
   private $preguntes;
   private $respostes;
   private $id;
+  private $idQuestion;
   private $nombre_cuestionario;
   private $autor;
   private $fecha;
@@ -28,9 +30,18 @@ class Questionari {
   
 	//ahora declaro una serie de métodos constructores que aceptan diversos números de parámetros
 
+  function __construct0(){ 
+  }
+  
   function __construct1($id)
 	{
 		$this->id = $id;
+	}
+
+  function __construct2($id, $idQuestion)
+	{
+		$this->id = $id;
+    $this->idQuestion = $idQuestion;
 	}
 
 
@@ -184,7 +195,15 @@ class Questionari {
 
 
 
-
+  
+  /**
+   * deleteQuestionari
+   * 
+   * Cambia el campo hidden de 0 a 1 para ocultar el registro correspondiente simulando que se ha eliminado,
+   * pero tan solo se ha ocultado.
+   *
+   * return void
+   */
   public function deleteQuestionari(){
     ///***Include del archivo que permite conectarnos a la base de datos
     include "../includes/config-connexio.php";
@@ -232,8 +251,86 @@ class Questionari {
     return $result;
 
     ///***Include del archivo que permite desconectarnos a la base de datos
-    //include "../includes/config-desconnexio.php";
+    include "../includes/config-desconnexio.php";
   }
+
+
+  
+
+  /**
+   * showQuestionariPreguntes
+   *
+   * Muestra todas las preguntas asignadas a un cuestionario
+   * 
+   * return void
+   */
+  public function showQuestionariPreguntes(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
+
+    ///*** Consulta que recoge los campos filtrandolos por dos campos para poder mostrar o no
+    $sql = "SELECT * FROM `questions` WHERE `id_questionary` = $this->id AND hidden = 0";
+    $resultado = mysqli_query($conn, $sql);
+
+    
+
+    return $resultado;
+
+    ///***Include del archivo que permite desconectarnos a la base de datos
+    include "../includes/config-desconnexio.php";
+  }
+
+  
+  /**
+   * FALTA ARREGLAR!!
+   * 
+   * unassignQuestion
+   * 
+   *Método que quita la asignacion de una pregunta a un cuestionario poniendola en NULL y asi poder asignarla en otro cuestionario
+   * 
+   * return void
+   */
+  public function unassignQuestion(){
+    ///***Include del archivo que permite conectarnos a la base de datos
+    include "../includes/config-connexio.php";
+
+    ///*** query
+    $query = "UPDATE `questions` SET `id_questionary`= NULL WHERE `id_question`= $this->idQuestion";
+
+
+    ///*** Comprueba la conexión y la consulta, si la consulta es diferente a vacia entonces redirige a una página o a otra   
+    if($conn->query($query)){
+      ///***Include del archivo que permite desconectarnos a la base de datos
+      include "../includes/config-desconnexio.php";
+      //Los header location se les pasa la variable id para poder redirigir a la página ya que se pasa por get y hay que coger la URL
+      header("Location: ../admin/Llistat-Preguntes-Questionari.php?id=$this->idQuestion");
+    }else{
+      include "../includes/config-desconnexio.php";
+      header("Location: ../admin/Llistat-Preguntes-Questionari.php?id=$this->idQuestion");
+    }
+
+    include "../includes/config-desconnexio.php";
+  }
+
+
+
+
+
+
+
+
+  public function mostrarQuestionarisUsuari(){
+
+    include '../includes/config-connexio.php';
+
+    $sql = "SELECT * FROM questionnaries WHERE id_user = $this->id";
+    $result = mysqli_query($conn, $sql);
+
+    return $result;
+
+    include '../includes/config-desconnexio.php'; 
+  }
+  
 }
 
 ?>

@@ -1,20 +1,6 @@
 <?php
-    include_once "../clases/QuestionariClass.php";
-
-    //Comprobamos si recibimos los datos por método GET desde el archivo php del que mandamos llamar
-    if(isset($_GET["id"]))
-    {
-        $id_cuestionario = $_GET["id"];
-    }
-
-    //Intanciamos un objeto para trabajar con el al que le pasamos un parámetro
-    $cuestionarioPreguntas = new Questionari($id_cuestionario);
-
-    //llamamos al método estatico showQuestionari para poder acceder a los campos de la tabla questionary
-    $resultadoCuestionario = Questionari::showQuestionari();
-    $mostrarCuestionario = mysqli_fetch_array($resultadoCuestionario);
+    include_once "../clases/Informesprova.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Preguntas-<?php echo $mostrarCuestionario['name_questionary']?></title><!--se modifica el title dependiendo de cada cuestionario-->
+    <title>Vista Informe</title>
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -30,8 +16,8 @@
     <link href="../css/fontawesome.min.css" rel="stylesheet">
     <link href="../css/brands.min.css" rel="stylesheet">
     <link href="../css/solid.min.css" rel="stylesheet">
-    <script src="../scripts/checkbox.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script src="../scripts/checkbox.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -65,14 +51,15 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../cliente/index.html"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
+                                    <li><a class="dropdown-item" href="../admin/Llistat-Questionaris.php"><i
+                                                class="fa-solid fa-shield-halved"></i>Modo Admin</a></li>
                                 </ul>
                             </li>
-                          </ul>
                     </div>
                 </div>
             </div>
-        </div><!--Header Logo-->
+        </div>
+        <!--Header Logo-->
 
 
         <nav class="navbar navbar-expand-lg p-0" id="main-navbar">
@@ -84,89 +71,64 @@
                     </button></span>
                 <div class="collapse navbar-collapse p-0" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="fa-solid fa-house"></i>Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Llistat-Questionaris.php"><i
-                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Llistat-Informes.php"><i
-                                    class="fa-solid fa-book"></i>Informes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Llistat-Preguntes.php"><i
-                                    class="fa-solid fa-question"></i>Listado Preguntas</a>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="Llistat-Respostes.php"><i
-                                    class="fa-solid fa-check-circle"></i>Listado Respuestas</a>
+                        <li class="nav-item"><a class="nav-link" href="Vista-Questionari.php"><i
+                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-book"></i>Informes</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-graduation-cap"></i>Formación</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
-                            class="fa-solid fa-address-book"></i>Contacto</a>
+                                    class="fa-solid fa-address-book"></i>Contacto</a>
                         </li>
                     </ul>
                 </div>
-        </nav><!--Header Menu-->
+        </nav>
+        <!--Header Menu-->
 
     </header>
-    <div class="container overflow-hidden text-center py-3">
-    <div class="input-group" id="barra-busqueda">
-        <div>
-            <button class="btn btn-primary btn-sm" id="boton_asignar_preguntas_questionario" onclick="">Asignar Preguntas al Cuestionario</button>
-        </div>
-
-        
-      </div>
-    </div><!--Asignar Preguntas-->
-
+    
     <div class="container overflow-hidden text-center py-3" id="cuerpo">
         <div class="container overflow-hidden text-center py-3">
-            <h2>Preguntas Asignadas - <?php echo $mostrarCuestionario['name_questionary']?></h2>
+            <h2>Lista informes</h2>
         </div>
+
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
-                        <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
-                        <th scope="col">Nombre Pregunta</th>
-                        <th scope="col">Descripción Pregunta</th>
-                        <th scope="col"><button class="btn btn-danger btn-sm">Desasignar toda la selección</button></th><!--Desasignar toda la Selección-->
+                        <th scope="col">Nombre informe</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Acción</th>
                     </tr>
-                </thead>
-
-                <!--Tabla que se autogenera con los campos de la base de datos-->
+                </thead> 
                 <tbody>
-                    <?php 
-                      ///*** Mostramos la lista de todas las preguntas que corresponden al cuestionario usando el método sobre el objeto creado */
-                      $resultado = $cuestionarioPreguntas->showQuestionariPreguntes();
-
-                      while($mostrar = mysqli_fetch_array($resultado)){
+                <?php 
+                    ///*** */
+                    $informe = new Informe(3);
+                    $result = $informe->mostrarInformesUsuari();
+                    while($mostrar = mysqli_fetch_array($result)){
                     ?>
                     <tr>
-                        <th scope="row"><input type="checkbox"></th>
-                        <td id="name_question_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['name_question']?></td><!--Nombre Pregunta-->
-                        <td id="autor_question_edit_<?php echo $mostrar['id_questionary']?>"> <?php echo $mostrar['description_question']?></td><!--Descripción/Cuerpo pregunta-->
-                        
+                        <td id="nombre-cuestionario-"><?php echo $mostrar['name_report']?></td><!--Nombre Questionario-->
+                        <td><?php echo $mostrar['date_report']?></td><!--Fecha-->
                         <td>
-                          <div class="d-flex justify-content-center">
-                        
-                            <form action="../actions/desasignar_pregunta.php?id_questionary=<?php echo $mostrarCuestionario['id_questionary']?>&id_question=<?php echo $mostrar['id_question'] ?>" method="POST">
-                              <input type="hidden" value="<?php $mostrar['id_questionary'] ?>" name="input_desasignar">
-                              <button type="submit" class="btn btn-danger btn-sm mx-2">Desasignar</button>
-                            </form><!--botón Desasignar-->
-
-                          </div>
-                        </td>
+                        <form action= "" method="post">
+                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
+                            <input class="btn btn-danger btn-sm" type="submit" value="Descargar PDF">
+                        </form>
+                        </td><!--Editar i Eliminar-->
                     </tr>
 
                     <?php 
-                    }
+                        }
                     ?>
                 </tbody>
             </table>
         </div>
     </div>
-
-    
-    
 
 
     <footer class="bg-black text-center text-lg-center mt-auto">
@@ -220,11 +182,6 @@
             </div>
         </div>
     </footer>
-
-
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../scripts/mostrar_modals_questionari.js"></script>
 </body>
-
 
 </html>

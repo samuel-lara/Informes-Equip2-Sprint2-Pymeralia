@@ -7,7 +7,17 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form id="test" action="../actions/editar_questionari.php" method="POST">
+            <!--al formulario le ponemos un preventDefault en el evento para evitar que se envie por defecto-->
+            <form id="form_modal_editar" action="../actions/editar_questionari.php" onsubmit="event.preventDefault();" method="POST">
+
+                <div class="alert alert-danger" style="display:none;" role="alert" id="alerta_error_modal_editar">
+                  Error al rellenar los campos
+                </div>
+
+                <div class="alert alert-success" style="display:none;" role="alert" id="alerta_validado_modal_editar">
+                  Cuestionario editado correctamente
+                </div>
+
                   <input type="hidden" value="<?php echo $mostrar['id_questionary']?>" name="id_questionary">
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nombre Cuestionario:</label>
@@ -24,7 +34,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                   <!--Enviar el cuestionario solo cuando le doy click al botón-->
-                  <button class="btn btn-primary" type="submit">Guardar Cuestionario</button>
+                  <button class="btn btn-primary" type="submit" onclick="validarFormularioEditar()">Guardar Cuestionario</button>
               </div>  
             </form>
             </div>

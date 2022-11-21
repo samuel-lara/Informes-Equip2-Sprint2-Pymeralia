@@ -1,1 +1,1 @@
-1. Ejecutar npm install tan solo empezar el proyecto por primera vez.
+1. Ejecutar npm install tan solo empezar el proyecto por primera vez en la ruta donde se encuentra el package.json y el package-lock.json para instalar todas las dependencias y asi poder trabajar con ellas.

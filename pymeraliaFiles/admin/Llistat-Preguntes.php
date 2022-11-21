@@ -1,6 +1,7 @@
 <?php
-    include_once "../clases/Informesprova.php";
+    include_once "../clases/PreguntaClass.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista Informe</title>
+    <title>Lista Preguntas</title>
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -16,8 +17,8 @@
     <link href="../css/fontawesome.min.css" rel="stylesheet">
     <link href="../css/brands.min.css" rel="stylesheet">
     <link href="../css/solid.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <script src="../scripts/checkbox.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -51,16 +52,14 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../cliente/index.html"><i
-                                                class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
+                                    <li><a class="dropdown-item" href="../cliente/index.html"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
                                 </ul>
                             </li>
+                          </ul>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Header Logo-->
-
+        </div><!--Header Logo-->
 
         <nav class="navbar navbar-expand-lg p-0" id="main-navbar">
             <div class="container-fluid">
@@ -85,44 +84,71 @@
                         </li>
                     </ul>
                 </div>
-        </nav>
-        <!--Header Menu-->
+        </nav><!--Header Menu-->
 
     </header>
-    
-    <div class="container overflow-hidden text-center py-3" id="cuerpo">
-        <div class="container overflow-hidden text-center py-3">
-            <h2>Lista informes</h2>
+
+    <div class="container overflow-hidden text-center py-3">
+    <div class="input-group" id="barra-busqueda">
+        <div>
+            <button class="btn btn-primary btn-sm" id="boton-crear-pregunta" onclick="showModal('#modalCrear')">Crear pregunta</button>
         </div>
 
+        <?php include "../modals/modal_crear_pregunta.php"?><!--Include Modal Crear Cuestionario-->
+
+        <div class="form-outline">
+          <input type="search" id="form1" class="form-control" placeholder="Buscar"/>
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="container overflow-hidden text-center py-3" id="cuerpo">
+        <div class="container overflow-hidden text-center py-3">
+            <h2>Lista de Preguntas</h2>
+        </div>
         <div>
             <table class="table table-striped align-middle container overflow-hidden text-center py-3">
                 <thead>
                     <tr>
-                        <th scope="col">Nombre informe</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col"><input type="checkbox" onclick="marcar(this)"></th>
+                        <th scope="col">Pregunta</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col"><button class="btn btn-danger btn-sm">Eliminar toda la selección</button>
+                            <!--Editar i Eliminar-->
+                        </th>
                     </tr>
-                </thead> 
+                </thead>
                 <tbody>
-                <?php 
-                    ///*** */
-                    $informe = new Informe(3);
-                    $result = $informe->mostrarInformesUsuari();
-                    while($mostrar = mysqli_fetch_array($result)){
+                    <?php 
+                      ///*** mostrem la llista de totes les preguntes cridant al métode estàtic showQuestionari de la clase Questionari */
+                      $result = Pregunta::showPregunta();
+
+                      while($mostrar = mysqli_fetch_array($result)){
                     ?>
                     <tr>
-                        <td id="nombre-cuestionario-"><?php echo $mostrar['name_report']?></td><!--Nombre Questionario-->
-                        <td><?php echo $mostrar['date_report']?></td><!--Fecha-->
+                        <th scope="row"><input type="checkbox"></th>
+                        <td id="name_question_edit_ <?php echo $mostrar['id_question']?>"> <?php echo $mostrar['name_question']?></td> <!--Nombre Pregunta-->
+                        <td id="description_question_edit_ <?php echo $mostrar['id_question']?>"> <?php echo $mostrar['description_question']?></td><!--Descripcion Pregunta-->
                         <td>
-                        <form action= "" method="post">
-                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
-                            <input class="btn btn-danger btn-sm" type="submit" value="Descarregar">
-                        </form>
-                        </td><!--Editar i Eliminar-->
+                          <div class="d-flex justify-content-center">
+                              <button class="btn btn-warning btn-sm mx-2" id="editar-pregunta" onclick="showModalPreguntes('#modalEditar-<?php echo $mostrar['id_question']?>')">Editar</button><!--botón Editar-->
+                      
+                            <form action="../actions/borrar_pregunta.php?id=<?php echo $mostrar['id_question'] ?>" method="POST"><!--botón Eliminar-->
+                              <input type="hidden" value="<?php $mostrar['id_question'] ?>" name="input-eliminar">
+                              <button type="submit" class="btn btn-danger btn-sm mx-2">Eliminar</button>
+                            </form>
+                          </div>
+                        </td>
                     </tr>
 
+
+                    <?php include "../modals/modal_crear_pregunta.php"?><!--Include Modal Crear Pregunta-->
+                     
                     <?php 
-                        }
+                    }
                     ?>
                 </tbody>
             </table>
