@@ -66,7 +66,7 @@
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item" href="../cliente/index.html"><i
+                                            <li><a class="dropdown-item" href="../cliente/Vista-Questionari.php"><i
                                                         class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
                                         </ul>
                                     </li>

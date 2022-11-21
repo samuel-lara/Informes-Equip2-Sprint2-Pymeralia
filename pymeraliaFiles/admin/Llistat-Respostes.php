@@ -50,7 +50,7 @@ include "../modals/modal_crear_resposta.php"
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../cliente/index.html"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
+                                    <li><a class="dropdown-item" href="../cliente/Vista-Questionari.php"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
                                 </ul>
                             </li>
                     </div>
@@ -70,10 +70,16 @@ include "../modals/modal_crear_resposta.php"
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-house"></i>Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="fa-solid fa-clipboard"></i>Questionarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Questionaris.php"><i
+                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Informes.php"><i
                                     class="fa-solid fa-book"></i>Informes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Preguntes.php"><i
+                                    class="fa-solid fa-question"></i>Listado Preguntas</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Respostes.php"><i
+                                    class="fa-solid fa-check-circle"></i>Listado Respuestas</a>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-graduation-cap"></i>Formación</a>
                         </li>

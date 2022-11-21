@@ -169,7 +169,7 @@ class Informe {
    * @return void
    */
   public function showInforme(){
-
+    
   }
 
   /** METODES */  
