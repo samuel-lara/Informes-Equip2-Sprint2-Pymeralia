@@ -52,7 +52,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../cliente/index.html"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
+                                    <li><a class="dropdown-item" href="../cliente/Vista-Questionari.php"><i class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
                                 </ul>
                             </li>
                           </ul>
@@ -70,17 +70,23 @@
                     </button></span>
                 <div class="collapse navbar-collapse p-0" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a>
-                        </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="fa-solid fa-clipboard"></i>Questionarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-book"></i>Informes</a>
+                                    class="fa-solid fa-house"></i>Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Questionaris.php"><i
+                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Informes.php"><i
+                                    class="fa-solid fa-book"></i>Informes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Preguntes.php"><i
+                                    class="fa-solid fa-question"></i>Listado Preguntas</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Respostes.php"><i
+                                    class="fa-solid fa-check-circle"></i>Listado Respuestas</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-graduation-cap"></i>Formación</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="fa-solid fa-address-book"></i>Contacto</a>
+                            class="fa-solid fa-address-book"></i>Contacto</a>
                         </li>
                     </ul>
                 </div>
@@ -91,7 +97,7 @@
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-pregunta" onclick="showModal('#modalCrear')">Crear pregunta</button>
+            <button class="btn btn-primary btn-sm" id="boton-crear-pregunta" onclick="showModal('#modal-crear-pregunta')">Crear pregunta</button>
         </div>
 
         <?php include "../modals/modal_crear_pregunta.php"?><!--Include Modal Crear Cuestionario-->
@@ -207,6 +213,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../scripts/mostrar_modals_questionari.js"></script>
 </body>
 
 </html>

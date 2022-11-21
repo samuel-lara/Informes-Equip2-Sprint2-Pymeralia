@@ -5,11 +5,3 @@ function showModal(param){
   $(param).modal('show');
 }
 
-/*
-//variables que almacenan valores para mostrar
-var nombreEditar = document.getElementById("name_questionary_edit_4").textContent;
-var autorEditar = document.getElementById("autor_questionary_edit_4").textContent;
-var autorEditar = document.getElementById("autor_questionary_edit_4").textContent;
-*/
-
-
