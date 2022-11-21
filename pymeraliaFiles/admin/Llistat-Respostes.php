@@ -1,3 +1,6 @@
+<?php 
+include "../modals/modal_crear_resposta.php"
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -85,7 +88,7 @@
     <div class="container overflow-hidden text-center py-3">
     <div class="input-group" id="barra-busqueda">
         <div>
-            <button class="btn btn-primary btn-sm" id="boton-crear-questionario">Crear Resposta</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalresposta" id="boton-crear-questionario">Crear Resposta</button>
         </div>
 
         <div class="form-outline">
