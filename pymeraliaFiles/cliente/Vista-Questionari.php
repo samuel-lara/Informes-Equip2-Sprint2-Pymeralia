@@ -74,9 +74,9 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
+                        <li class="nav-item"><a class="nav-link" href="Vista-Questionari.php"><i
                                     class="fa-solid fa-clipboard"></i>Questionarios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-book"></i>Informes</a>
+                        <li class="nav-item"><a class="nav-link" href="vista-informe.php"><i class="fa-solid fa-book"></i>Informes</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
                                     class="fa-solid fa-graduation-cap"></i>Formación</a>
@@ -103,11 +103,11 @@
                     <tr>
                         <th scope="col">Nombre Questionario</th>
                         <th scope="col">Fecha</th>
+                        <th scope="col">Acción</th>
                     </tr>
                 </thead> 
                 <tbody>
                 <?php 
-                    ///*** */
                     $questionari = new Questionari(3);
                     $result = $questionari->mostrarQuestionarisUsuari();
                     while($questionari = mysqli_fetch_array($result)){
@@ -115,7 +115,9 @@
                     <tr>
                         <td id="nombre-cuestionario-"><?php echo $questionari['name_questionary']?></td><!--Nombre Questionario-->
                         <td id="data-cuestionario"><?php echo $questionari['date_questionary']?></td><!--Fecha-->
-                        <td><input class="btn btn-primary" type="submit" value="Comensar Cuestionario"></td><!--Comensar Cuestionario-->
+                        <td>
+                            <a href="contestar-questionari.php"><button type="button" class="btn btn-primary">Empezar Cuestionario</button></a>
+                            </td><!--Començar Cuestionario-->
                     </tr>
 
                     <?php 

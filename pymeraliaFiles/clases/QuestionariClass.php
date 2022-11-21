@@ -30,8 +30,7 @@ class Questionari {
   
 	//ahora declaro una serie de métodos constructores que aceptan diversos números de parámetros
 
-  function __construct0($user_id){
-    $this->id_user = $user_id;
+  function __construct0(){ 
   }
   
   function __construct1($id)
@@ -313,12 +312,18 @@ class Questionari {
     include "../includes/config-desconnexio.php";
   }
 
+
+
+
+
+
+
+
   public function mostrarQuestionarisUsuari(){
 
     include '../includes/config-connexio.php';
 
-    $sql = "SELECT * FROM questionnaries WHERE id_user = $this->id_user";
-    echo ($sql);
+    $sql = "SELECT * FROM questionnaries WHERE id_user = $this->id";
     $result = mysqli_query($conn, $sql);
 
     return $result;

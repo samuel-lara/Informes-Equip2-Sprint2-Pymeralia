@@ -51,8 +51,8 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../cliente/index.html"><i
-                                                class="fa-solid fa-shield-halved"></i>Modo Usuario</a></li>
+                                    <li><a class="dropdown-item" href="../admin/Llistat-Questionaris.php"><i
+                                                class="fa-solid fa-shield-halved"></i>Modo Admin</a></li>
                                 </ul>
                             </li>
                     </div>
@@ -73,8 +73,8 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i
-                                    class="fa-solid fa-clipboard"></i>Questionarios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Vista-Questionari.php"><i
+                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-book"></i>Informes</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#"><i
@@ -101,6 +101,7 @@
                     <tr>
                         <th scope="col">Nombre informe</th>
                         <th scope="col">Fecha</th>
+                        <th scope="col">Acción</th>
                     </tr>
                 </thead> 
                 <tbody>
@@ -116,7 +117,7 @@
                         <td>
                         <form action= "" method="post">
                             <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
-                            <input class="btn btn-danger btn-sm" type="submit" value="Descarregar">
+                            <input class="btn btn-danger btn-sm" type="submit" value="Descargar PDF">
                         </form>
                         </td><!--Editar i Eliminar-->
                     </tr>

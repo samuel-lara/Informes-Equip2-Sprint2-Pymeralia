@@ -78,29 +78,35 @@
 
 
                 <nav class="navbar navbar-expand-lg p-0" id="main-navbar">
-                    <div class="container-fluid">
-                        <span class="p-2">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button></span>
-                        <div class="collapse navbar-collapse p-0" id="navbarNav">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i
-                                            class="fa-solid fa-clipboard"></i>Questionarios</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-book"></i>Informes</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i
-                                            class="fa-solid fa-graduation-cap"></i>Formación</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i
-                                            class="fa-solid fa-address-book"></i>Contacto</a>
-                                </li>
-                            </ul>
-                        </div>
-                </nav>
+            <div class="container-fluid">
+                <span class="p-2">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button></span>
+                <div class="collapse navbar-collapse p-0" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#"><i
+                                    class="fa-solid fa-house"></i>Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Questionaris.php"><i
+                                    class="fa-solid fa-clipboard"></i>Cuestionarios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Informes.php"><i
+                                    class="fa-solid fa-book"></i>Informes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Preguntes.php"><i
+                                    class="fa-solid fa-question"></i>Listado Preguntas</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="Llistat-Respostes.php"><i
+                                    class="fa-solid fa-check-circle"></i>Listado Respuestas</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i
+                                    class="fa-solid fa-graduation-cap"></i>Formación</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i
+                            class="fa-solid fa-address-book"></i>Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
                 <!--Header Menu-->
 
             </header>
@@ -146,10 +152,16 @@
                                 <td id="nombre-cuestionario-"><?php echo $mostrar['name_report']?></td><!--Nombre Questionario-->
                                 <td><?php echo $mostrar['date_report']?></td><!--Fecha-->
                                 <td>
-                                <form action= "<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                                    <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
-                                    <input class="btn btn-danger btn-sm" type="submit" value="Eliminar">
-                                </form>
+                                    <div class="d-flex justify-content-center">
+                                        <form action= "<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
+                                            <input class="btn btn-danger btn-sm" type="submit" value="Eliminar">
+                                        </form>
+                                        <form action= "../actions/descargar_pdf.php?id=<?php echo $mostrar['id_report']?>" method="post">
+                                            <input type="hidden" value="<?php echo $mostrar['id_report']?>" name="id_eliminar">
+                                            <input class="btn btn-primary btn-sm ms-1" type="submit" value="Descarregar">
+                                        </form>
+                                    </div>
                                 </td><!--Editar i Eliminar-->
                             </tr>
 
